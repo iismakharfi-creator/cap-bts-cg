@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f6b4a">
+<meta name="description" content="Révisions du BTS Comptabilité et Gestion : fiches, quiz, sujets d'examen et planning.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Cap BTS CG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout : application mobile à onglets du bas, colonne unique ~640px, registre de comptable (vert encre, papier, chiffres alignés) */
+:root{
+  --bg:#f3f5f1; --card:#ffffff; --ink:#17231d; --muted:#5b6b62; --line:#d9e0d8;
+  --accent:#1f6b4a; --accent-soft:#e2efe7; --gold:#b57b14; --gold-soft:#fbf1dc;
+  --ok:#1f7a45; --ok-soft:#e1f3e7; --bad:#b3362c; --bad-soft:#fbe6e3;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1512; --card:#18211c; --ink:#e6eee8; --muted:#9db0a4; --line:#2a3630;
+  --accent:#5cc492; --accent-soft:#1b3328; --gold:#e3ab4a; --gold-soft:#33280f;
+  --ok:#5cc492; --ok-soft:#173225; --bad:#f08a7f; --bad-soft:#3a1d1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1512; --card:#18211c; --ink:#e6eee8; --muted:#9db0a4; --line:#2a3630;
+  --accent:#5cc492; --accent-soft:#1b3328; --gold:#e3ab4a; --gold-soft:#33280f;
+  --ok:#5cc492; --ok-soft:#173225; --bad:#f08a7f; --bad-soft:#3a1d1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.55}
+.wrap{max-width:660px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 110px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.35rem;font-weight:700}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0}
+.eyebrow{font-size:.74rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+.stack{display:flex;flex-direction:column;gap:14px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px}
+.count{font-family:var(--mono);font-size:.82rem;color:var(--muted);text-align:right}
+.count b{display:block;font-size:1.5rem;color:var(--accent);font-family:var(--display)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.hint{background:var(--gold-soft);border-radius:12px;padding:14px 16px;font-size:.97rem}
+.hint b{color:var(--gold)}
+.group-title{margin:22px 0 8px}
+.subj{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit;cursor:pointer}
+.subj:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.code{flex:none;width:52px;height:44px;border-radius:9px;display:grid;place-items:center;font-family:var(--mono);font-size:.82rem;background:var(--accent-soft);color:var(--accent)}
+.subj .t{min-width:0;flex:1}
+.subj .n{font-weight:700;line-height:1.25}
+.subj .s{font-size:.86rem;color:var(--muted)}
+.pill{flex:none;font-size:.74rem;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.pill.later{background:var(--line);color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:8px}
+select{width:100%;font:inherit;font-weight:600;padding:12px 14px;border-radius:12px;border:2px solid var(--accent);background:var(--card);color:var(--ink)}
+.fiche{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.fiche summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.fiche summary::-webkit-details-marker{display:none}
+.fiche summary .t{flex:1;min-width:0}
+.freq{display:inline-block;margin-top:5px;font-size:.74rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--gold-soft);color:var(--gold)}
+.chev{flex:none;color:var(--muted);transition:transform .2s}
+details[open] .chev{transform:rotate(90deg)}
+.done{color:var(--ok);font-weight:700;font-size:.8rem}
+.fbody{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.fbody ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.def{border-left:3px solid var(--accent);padding:2px 0 2px 12px}
+.ex{background:var(--accent-soft);border-radius:10px;padding:12px 14px}
+.ex .lab,.tip .lab,.trap .lab{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:3px}
+.ex .lab{color:var(--accent)}
+.tip{background:var(--gold-soft);border-radius:10px;padding:12px 14px}.tip .lab{color:var(--gold)}
+.trap{background:var(--bad-soft);border-radius:10px;padding:12px 14px}.trap .lab{color:var(--bad)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:700}
+td.num{text-align:right;font-family:var(--mono);font-size:.86rem;white-space:nowrap}
+.mark{width:100%;margin-top:4px;font:inherit;font-weight:700;padding:11px;border-radius:10px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.mark.on{background:var(--accent);color:var(--card)}
+.q{font-weight:700;font-size:1.08rem}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;font:inherit;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.feedback{border-radius:10px;padding:12px 14px;background:var(--bg)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.btn{font:inherit;font-weight:700;padding:12px 16px;border-radius:12px;border:none;background:var(--accent);color:var(--card);cursor:pointer;width:100%}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1 1 140px}
+.reveal{margin-top:8px}
+code{font-family:var(--mono);font-size:.84em;background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+.ans{margin-top:8px;padding:12px 14px;border-radius:10px;background:var(--ok-soft)}
+.big{font-family:var(--display);font-size:3rem;font-weight:800;color:var(--accent);line-height:1}
+.s{font-size:.9rem;color:var(--muted)}
+.seg{display:flex;background:var(--line);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;font:inherit;font-weight:700;font-size:.92rem;border:none;background:transparent;color:var(--muted);padding:9px 6px;border-radius:9px;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--accent)}
+.today{background:var(--accent);color:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
+.today .eyebrow,.today .s{color:#d7ece0}
+.today h2{color:#fff}
+.today .btn{background:#fff;color:#17231d}.today .btn.ghost{background:transparent;color:#fff;border-color:#cfe6d9}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stats>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0}
+.stats b{display:block;font-family:var(--display);font-size:1.35rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font-size:.78rem;color:var(--muted);line-height:1.25;display:block}
+.wrap>.hint{margin-bottom:4px}
+.phase{border-left:4px solid var(--line);padding:4px 0 4px 14px;display:flex;flex-direction:column;gap:4px}
+.phase.now{border-left-color:var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;padding:12px 14px}
+.phase.past{opacity:.6}
+.phase ul{margin:2px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.ph-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ph-date{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.week summary{cursor:pointer;font-weight:700;color:var(--accent);margin-top:6px}
+.week ul{margin-top:6px}
+.clock{font-family:var(--mono);font-size:1.6rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.timer{display:flex;flex-direction:column;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);z-index:3}
+.sujet h3{margin-top:4px}
+.score{display:flex;align-items:center;gap:8px;font-weight:600}
+.score input{width:76px;font:inherit;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.back{background:none;border:none;font:inherit;font-weight:700;color:var(--accent);padding:4px 0;cursor:pointer;text-align:left}
+.ex .lab{color:var(--accent)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:5}
+nav.tabs .in{display:flex;width:100%;max-width:660px}
+nav.tabs button{flex:1;min-width:0;background:none;border:none;font:inherit;font-size:.7rem;font-weight:600;color:var(--muted);padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border-top:3px solid transparent}
+nav.tabs button.on{color:var(--accent);border-top-color:var(--accent)}
+nav.tabs svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<nav class="tabs" aria-label="Navigation principale"><div class="in">
+  <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Accueil</button>
+  <button data-tab="fiches"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1v14c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6v14"/></svg>Fiches</button>
+  <button data-tab="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.5a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 2.2-2.5 3.7"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></svg>Quiz</button>
+  <button data-tab="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2.5h9l4 4v15H6z"/><path d="M9.5 11h6M9.5 14.5h6M9.5 18h4"/></svg>Entraînement</button>
+  <button data-tab="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8 14h3M8 17h6"/></svg>Planning</button>
+</div></nav>
+
+<script>
+/* ===================== CONTENU ===================== */
+const SUBJECTS = [
+{ id:"cejm", code:"CEJM", group:"Matières générales", name:"Culture économique, juridique et managériale", short:"Économie, droit et management",
+  fiches:[
+  { titre:"Économie ou management : comment ne plus les confondre", freq:"Indispensable pour ton contrôle", html:`
+    <p>Les deux matières parlent d'entreprises, d'argent et de décisions, c'est pour ça qu'on les mélange. La vraie différence, c'est <b>l'endroit d'où on regarde</b>.</p>
+    <div class="def"><b>L'économie</b> regarde <b>de loin</b> : un pays, un marché, des millions de personnes. Elle étudie comment on produit les richesses, comment on les partage et comment on les consomme.</div>
+    <div class="def"><b>Le management</b> regarde <b>de l'intérieur d'une organisation</b> : une entreprise, une association, une mairie. Il étudie comment on la dirige, comment on prend les décisions, comment on fait travailler les gens ensemble.</div>
+    <div class="ex"><span class="lab">Exemple</span>Le prix du café augmente partout en France : c'est de l'<b>économie</b> (un marché, des prix, des consommateurs).<br>Le gérant d'un bar décide d'acheter un autre fournisseur de café moins cher et réorganise les horaires de ses serveurs : c'est du <b>management</b> (une organisation qui prend une décision).</div>
+    <div class="tip"><span class="lab">Astuce pour l'examen</span>Pose-toi une seule question : « Est-ce qu'on parle de ce qui se passe <b>dans</b> une organisation précise, ou de ce qui se passe <b>autour</b>, sur le marché ou dans le pays ? » Dedans = management. Autour = économie.</div>
+    <div class="tbl"><table><tr><th>Mots qui annoncent de l'économie</th><th>Mots qui annoncent du management</th></tr>
+    <tr><td>marché, prix, offre, demande, croissance, inflation, chômage, produit intérieur brut, agents économiques, État, concurrence</td><td>organisation, finalité, objectifs, stratégie, décision, dirigeant, salariés, motivation, style de direction, diagnostic, structure</td></tr></table></div>`},
+  { titre:"Les agents économiques", freq:"Très fréquent", html:`
+    <p>Un <b>agent économique</b>, c'est une personne ou un groupe qui fait des choix économiques (produire, consommer, épargner…). On en compte cinq grandes familles.</p>
+    <div class="tbl"><table><tr><th>Agent</th><th>Son rôle principal</th><th>Exemple</th></tr>
+    <tr><td>Les ménages</td><td>Consommer et épargner</td><td>Une famille qui fait ses courses</td></tr>
+    <tr><td>Les entreprises</td><td>Produire des biens et des services pour les vendre</td><td>Une boulangerie, Renault</td></tr>
+    <tr><td>Les administrations publiques</td><td>Rendre des services gratuits ou presque, payés par les impôts</td><td>L'école publique, l'hôpital, la mairie</td></tr>
+    <tr><td>Les institutions financières</td><td>Prêter de l'argent et garder l'épargne</td><td>Une banque, une assurance</td></tr>
+    <tr><td>Le reste du monde</td><td>Échanger avec le pays (importations et exportations)</td><td>Une entreprise chinoise qui vend en France</td></tr></table></div>
+    <p>Ces agents sont reliés par des échanges : c'est le <b>circuit économique</b>. Les ménages donnent leur travail aux entreprises, qui leur versent un salaire ; avec ce salaire, les ménages achètent les produits des entreprises.</p>
+    <div class="ex"><span class="lab">Exemple</span>Tu travailles au centre social (tu fournis ton travail), tu reçois ton salaire, tu l'utilises pour acheter un téléphone (tu consommes) et tu mets 50 euros sur ton livret A (tu épargnes, et la banque pourra prêter cet argent à quelqu'un d'autre).</div>`},
+  { titre:"Le marché : offre, demande et prix", freq:"Très fréquent", html:`
+    <div class="def">Un <b>marché</b> est le lieu, réel ou virtuel, où se rencontrent ceux qui vendent (<b>l'offre</b>) et ceux qui achètent (<b>la demande</b>). De cette rencontre naît un <b>prix</b>.</div>
+    <ul><li>Quand le prix monte, les acheteurs achètent <b>moins</b> et les vendeurs veulent vendre <b>plus</b>.</li>
+    <li>Le <b>prix d'équilibre</b> est le prix où la quantité que les vendeurs proposent est égale à la quantité que les acheteurs veulent.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Au marché, en fin de matinée, un maraîcher a encore beaucoup de fraises (offre trop forte) : il baisse son prix pour les écouler. À l'inverse, s'il ne lui reste que trois barquettes et que dix clients en veulent, il peut monter le prix.</div>
+    <p><b>Auteur à connaître :</b> <b>Adam Smith</b> (1776) parle de « main invisible » : chacun cherche son propre intérêt, et le marché, par les prix, organise tout seul les échanges.</p>
+    <p><b>Les structures de marché</b> selon le nombre de vendeurs :</p>
+    <ul><li><b>Concurrence</b> : beaucoup de vendeurs (les boulangeries d'une grande ville).</li>
+    <li><b>Oligopole</b> : quelques gros vendeurs (les opérateurs de téléphone : Orange, SFR, Bouygues, Free).</li>
+    <li><b>Monopole</b> : un seul vendeur (la Société nationale des chemins de fer, SNCF, a longtemps été seule à faire rouler des trains en France).</li></ul>`},
+  { titre:"La création de richesse : valeur ajoutée et produit intérieur brut", freq:"Fréquent", html:`
+    <div class="def"><b>Valeur ajoutée</b> = ce que l'entreprise vend − ce qu'elle a acheté à d'autres entreprises pour produire (les <b>consommations intermédiaires</b>). C'est la richesse réellement créée par l'entreprise.</div>
+    <div class="ex"><span class="lab">Exemple</span>Un boulanger vend 10 000 euros de pain dans le mois. Il a acheté 3 000 euros de farine, de beurre et d'électricité.<br>Valeur ajoutée = 10 000 − 3 000 = <b>7 000 euros</b>. Ces 7 000 euros servent à payer ses salariés, les impôts, les intérêts à la banque, et le reste est son bénéfice.</div>
+    <div class="def"><b>Produit intérieur brut (PIB)</b> = la somme de toutes les valeurs ajoutées créées dans un pays pendant un an. C'est l'indicateur de la richesse produite par un pays.</div>
+    <div class="def"><b>Croissance économique</b> = l'augmentation du produit intérieur brut d'une année sur l'autre, en pourcentage.</div>
+    <div class="trap"><span class="lab">Piège</span>On n'additionne pas les chiffres d'affaires : la farine serait comptée deux fois (dans le prix du meunier et dans le prix du pain). C'est pour ça qu'on utilise la valeur ajoutée.</div>`},
+  { titre:"Les organisations et leurs finalités", freq:"Très fréquent", html:`
+    <div class="def">Une <b>organisation</b> est un groupe de personnes qui travaillent ensemble, avec des moyens, pour atteindre un but commun.</div>
+    <div class="tbl"><table><tr><th>Type</th><th>Finalité (but profond)</th><th>Exemple</th></tr>
+    <tr><td>Entreprise privée</td><td><b>Lucrative</b> : faire des bénéfices</td><td>Carrefour, un salon de coiffure</td></tr>
+    <tr><td>Organisation publique</td><td><b>Non lucrative</b> : servir l'intérêt général</td><td>Un hôpital public, une mairie</td></tr>
+    <tr><td>Association</td><td><b>Non lucrative</b> : réaliser un projet commun, souvent social</td><td>Un centre social, les Restos du cœur</td></tr></table></div>
+    <p><b>Finalité, buts, objectifs</b> : du plus général au plus précis.</p>
+    <ul><li><b>Finalité</b> : la raison d'être (exemple : aider les familles du quartier).</li>
+    <li><b>But</b> : une orientation (exemple : développer l'aide aux devoirs).</li>
+    <li><b>Objectif</b> : chiffré et daté (exemple : accueillir 40 enfants en aide aux devoirs d'ici juin).</li></ul>
+    <div class="tip"><span class="lab">Astuce</span>Un objectif bien rédigé est <b>mesurable</b> (un chiffre) et <b>daté</b> (une échéance). Si ton sujet demande de « formuler un objectif », mets toujours les deux.</div>`},
+  { titre:"Le management : définition et auteurs clés", freq:"Très fréquent", html:`
+    <div class="def">Le <b>management</b> est l'ensemble des actions pour diriger une organisation : fixer les objectifs, prendre les décisions, organiser le travail, animer les équipes et contrôler les résultats.</div>
+    <p><b>Henri Fayol</b> (1916) décrit cinq fonctions du dirigeant. Moyen mnémotechnique : <b>« PO3C »</b>.</p>
+    <ul><li><b>P</b>révoir : anticiper l'avenir, faire des plans.</li>
+    <li><b>O</b>rganiser : répartir les tâches et les moyens.</li>
+    <li><b>C</b>ommander : donner les ordres.</li>
+    <li><b>C</b>oordonner : faire en sorte que tout le monde avance dans le même sens.</li>
+    <li><b>C</b>ontrôler : vérifier que les résultats sont atteints.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>La directrice d'un centre social prévoit le planning des vacances (prévoir), répartit les animateurs par activité (organiser), demande à chacun de préparer son atelier (commander), organise une réunion pour que les ateliers ne se chevauchent pas (coordonner), et fait le bilan des inscriptions à la fin (contrôler).</div>
+    <p><b>Henry Mintzberg</b> (1973) observe que le manager joue dix rôles, regroupés en trois familles : <b>interpersonnels</b> (représenter, motiver), <b>informationnels</b> (recueillir et transmettre l'information), <b>décisionnels</b> (décider, négocier, répartir les ressources).</p>`},
+  { titre:"La prise de décision", freq:"Fréquent", html:`
+    <p><b>Igor Ansoff</b> classe les décisions en trois niveaux :</p>
+    <div class="tbl"><table><tr><th>Niveau</th><th>Qui décide</th><th>Durée de l'effet</th><th>Exemple</th></tr>
+    <tr><td>Stratégique</td><td>La direction</td><td>Long terme, engage l'avenir</td><td>Ouvrir un deuxième magasin</td></tr>
+    <tr><td>Tactique (ou administrative)</td><td>Les cadres intermédiaires</td><td>Moyen terme</td><td>Choisir le fournisseur de la nouvelle boutique</td></tr>
+    <tr><td>Opérationnelle</td><td>Les employés, chefs d'équipe</td><td>Court terme, répétitive</td><td>Commander le stock de la semaine</td></tr></table></div>
+    <p><b>Herbert Simon</b> parle de <b>rationalité limitée</b> : un décideur n'a jamais toutes les informations ni tout le temps nécessaire. Il ne choisit donc pas la solution parfaite, mais la <b>première solution satisfaisante</b>.</p>
+    <div class="ex"><span class="lab">Exemple</span>Tu cherches une salle pour une réunion de parents. Tu ne visites pas toutes les salles de la ville : tu prends la première qui est libre, assez grande et pas trop chère. C'est la rationalité limitée.</div>`},
+  { titre:"Les styles de direction (Likert)", freq:"Fréquent", html:`
+    <p><b>Rensis Likert</b> distingue quatre styles, du plus fermé au plus ouvert :</p>
+    <ul><li><b>Autoritaire exploiteur</b> : le chef décide seul, menace et sanctionne.</li>
+    <li><b>Autoritaire paternaliste</b> : le chef décide seul mais se montre bienveillant, « comme un père ».</li>
+    <li><b>Consultatif</b> : le chef demande l'avis des salariés, puis décide seul.</li>
+    <li><b>Participatif</b> : les décisions sont prises avec les salariés.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Pour changer les horaires d'ouverture, la direction organise un sondage auprès de l'équipe, écoute les remarques, puis tranche elle-même : style <b>consultatif</b>. Si l'équipe vote et que la direction applique le résultat : style <b>participatif</b>.</div>
+    <div class="trap"><span class="lab">Piège</span>Consulter, ce n'est pas faire participer. Regarde <b>qui prend la décision finale</b>.</div>`},
+  { titre:"Le diagnostic stratégique : SWOT et cinq forces de Porter", freq:"Très fréquent", html:`
+    <p>Avant de choisir une stratégie, on fait un <b>diagnostic</b> : on regarde l'organisation et son environnement.</p>
+    <p><b>La matrice SWOT</b> (de l'anglais Strengths, Weaknesses, Opportunities, Threats : forces, faiblesses, opportunités, menaces) :</p>
+    <div class="tbl"><table><tr><th></th><th>Positif</th><th>Négatif</th></tr>
+    <tr><th>Interne (dépend de l'organisation)</th><td>Forces</td><td>Faiblesses</td></tr>
+    <tr><th>Externe (vient de l'environnement)</th><td>Opportunités</td><td>Menaces</td></tr></table></div>
+    <div class="ex"><span class="lab">Exemple</span>Un petit restaurant : <b>force</b> = un chef reconnu ; <b>faiblesse</b> = une salle trop petite ; <b>opportunité</b> = un nouveau bureau de 300 salariés ouvre dans la rue ; <b>menace</b> = un fast-food s'installe en face.</div>
+    <div class="trap"><span class="lab">Piège classique</span>Une opportunité ou une menace ne dépend <b>pas</b> de l'entreprise. « Nos prix sont trop élevés » est une faiblesse (interne), pas une menace.</div>
+    <p><b>Michael Porter</b> : cinq forces qui déterminent la concurrence dans un secteur : (1) la rivalité entre concurrents, (2) le pouvoir des clients, (3) le pouvoir des fournisseurs, (4) la menace de nouveaux entrants, (5) la menace des produits de substitution.</p>
+    <div class="ex"><span class="lab">Exemple</span>Pour les taxis, Uber a été à la fois un <b>nouvel entrant</b> et un concurrent ; les trottinettes électriques sont un <b>produit de substitution</b> (elles répondent au même besoin : se déplacer).</div>`},
+  { titre:"Droit : la méthode du syllogisme juridique", freq:"Tombe à chaque session", html:`
+    <p>En droit, on te donne une situation et on te demande si une personne a raison. On répond toujours avec la même méthode en trois temps : le <b>syllogisme juridique</b>.</p>
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+    <li><b>Le problème juridique</b> : la question posée de façon générale, <b>sans les noms</b> des personnes.</li>
+    <li><b>La majeure</b> : la règle de droit qui répond, avec sa source (article de loi, du Code civil, du Code du travail…).</li>
+    <li><b>La mineure</b> : les faits de l'énoncé, traduits en mots juridiques (qui est consommateur, quel contrat, quelles dates).</li>
+    <li><b>La conclusion</b> : on applique la règle aux faits et on répond clairement à la question.</li></ol>
+    <div class="ex"><span class="lab">Exemple</span>Lucas achète un casque sur un site internet. Il le reçoit le 5 mars et veut le renvoyer le 15 mars, sans raison particulière.<br>
+    <b>Problème juridique</b> : un consommateur qui a acheté un bien à distance peut-il revenir sur son achat sans donner de motif ?<br>
+    <b>Majeure</b> : selon l'article L221-18 du Code de la consommation, le consommateur dispose de 14 jours pour exercer son droit de rétractation, sans motif ni pénalité. Pour un bien, le délai court à partir de la réception.<br>
+    <b>Mineure</b> : Lucas est un consommateur qui a conclu un contrat à distance. Il a reçu le casque le 5 mars et veut se rétracter le 15 mars, soit 10 jours après.<br>
+    <b>Conclusion</b> : Lucas est dans le délai de 14 jours : il peut renvoyer le casque et être remboursé.</div>
+    <div class="trap"><span class="lab">Piège</span>Un problème juridique qui contient un nom propre (« Lucas peut-il… ») perd des points. Écris « un consommateur peut-il… ».</div>`},
+  { titre:"Droit : les formes juridiques de l'entreprise", freq:"Très fréquent", html:`
+    <div class="def">Une <b>société</b> est une <b>personne morale</b> : elle a son propre nom, son propre patrimoine, elle peut signer des contrats. Elle est distincte de ses associés.</div>
+    <div class="tbl"><table><tr><th>Forme</th><th>Associés</th><th>Responsabilité pour les dettes</th><th>Dirigeant</th></tr>
+    <tr><td>Entreprise individuelle</td><td>1 personne, pas de société</td><td>Depuis 2022, seuls les biens utiles à l'activité peuvent être saisis par les créanciers professionnels ; le patrimoine personnel est protégé</td><td>L'entrepreneur</td></tr>
+    <tr><td>Société à responsabilité limitée</td><td>1 à 100 (avec 1 seul associé, on parle d'entreprise unipersonnelle à responsabilité limitée)</td><td>Limitée aux apports</td><td>Un ou plusieurs gérants</td></tr>
+    <tr><td>Société par actions simplifiée</td><td>1 ou plus (avec 1 seul : société par actions simplifiée unipersonnelle)</td><td>Limitée aux apports</td><td>Un président, organisation libre fixée par les statuts</td></tr>
+    <tr><td>Société anonyme</td><td>2 au minimum (7 si elle est cotée en Bourse)</td><td>Limitée aux apports</td><td>Conseil d'administration et directeur général</td></tr></table></div>
+    <div class="ex"><span class="lab">Exemple</span>Deux amies créent une boutique de loisirs créatifs en société à responsabilité limitée, avec 5 000 euros d'apport chacune. Si la boutique fait faillite avec 40 000 euros de dettes, chacune perd au maximum ses 5 000 euros : les créanciers ne peuvent pas saisir leur appartement.</div>`},
+  { titre:"Droit : la formation du contrat", freq:"Très fréquent", html:`
+    <div class="def">Un <b>contrat</b> est un accord de volontés entre deux personnes ou plus, qui crée des obligations (payer, livrer, travailler…).</div>
+    <p>Selon l'article 1128 du Code civil, un contrat est valable s'il réunit <b>trois conditions</b> :</p>
+    <ul><li>le <b>consentement</b> des parties (elles sont d'accord, librement et en connaissance de cause) ;</li>
+    <li>leur <b>capacité</b> de contracter (un mineur ou un majeur protégé ne peut pas tout signer seul) ;</li>
+    <li>un <b>contenu licite et certain</b> (on ne peut pas vendre quelque chose d'interdit ou d'indéterminé).</li></ul>
+    <p><b>Les vices du consentement</b> (articles 1130 et suivants) : le consentement existe mais il est « abîmé ».</p>
+    <ul><li><b>L'erreur</b> : on se trompe soi-même sur une qualité essentielle (acheter une copie en croyant acheter un tableau original).</li>
+    <li><b>Le dol</b> : l'autre partie a menti, manœuvré ou volontairement caché une information importante.</li>
+    <li><b>La violence</b> : on a signé sous la menace ou la pression, y compris en profitant d'un état de dépendance.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Un vendeur de voitures d'occasion trafique le compteur pour afficher 60 000 kilomètres au lieu de 180 000. C'est un <b>dol</b>. L'acheteur peut demander la <b>nullité</b> du contrat (il rend la voiture, on lui rend son argent) et des dommages et intérêts.</div>`},
+  { titre:"Droit : l'inexécution du contrat", freq:"Très fréquent", html:`
+    <p>Quand une partie ne fait pas ce qu'elle a promis, l'article 1217 du Code civil donne <b>cinq possibilités</b> à l'autre partie, qu'elle peut parfois cumuler :</p>
+    <ul><li><b>Refuser d'exécuter sa propre obligation</b> (exception d'inexécution) : je ne paie pas tant que tu ne livres pas.</li>
+    <li><b>Demander l'exécution forcée</b> : obliger l'autre à faire ce qu'il a promis.</li>
+    <li><b>Obtenir une réduction du prix</b> si l'exécution est imparfaite.</li>
+    <li><b>Demander la résolution</b> du contrat : on y met fin.</li>
+    <li><b>Demander des dommages et intérêts</b> pour réparer le préjudice.</li></ul>
+    <div class="def"><b>Exception : la force majeure</b> (article 1218). Si l'inexécution vient d'un événement qui échappe au contrôle du débiteur, qui était imprévisible au moment de signer et dont on ne peut pas éviter les effets, le débiteur n'est pas responsable.</div>
+    <div class="ex"><span class="lab">Exemple</span>Un traiteur devait livrer le buffet d'un mariage et ne vient pas, sans explication. Les mariés peuvent refuser de payer, demander la fin du contrat et réclamer des dommages et intérêts pour le repas qu'ils ont dû commander en urgence. Si la salle avait été inondée par une crue exceptionnelle, le traiteur pourrait invoquer la force majeure.</div>`},
+  { titre:"Droit : la responsabilité civile", freq:"Fréquent", html:`
+    <div class="def">La <b>responsabilité civile</b> oblige une personne à <b>réparer le dommage</b> qu'elle a causé à une autre, en général en lui versant de l'argent (des dommages et intérêts).</div>
+    <ul><li><b>Responsabilité contractuelle</b> : le dommage vient de la mauvaise exécution d'un contrat.</li>
+    <li><b>Responsabilité extracontractuelle</b> : il n'y a pas de contrat entre la victime et l'auteur. Selon l'article 1240 du Code civil, celui qui cause un dommage à autrui par sa faute doit le réparer.</li></ul>
+    <p>Trois conditions à vérifier, toujours :</p>
+    <ul><li>un <b>fait générateur</b> (une faute, le fait d'une chose, le fait d'une autre personne) ;</li>
+    <li>un <b>dommage</b> (matériel, corporel ou moral) ;</li>
+    <li>un <b>lien de causalité</b> entre les deux.</li></ul>
+    <p><b>Cas particuliers utiles</b> : l'employeur est responsable des dommages causés par ses salariés pendant leur travail (article 1242). Le fabricant est responsable des dommages causés par un défaut de son produit, même sans faute (articles 1245 et suivants).</p>
+    <div class="ex"><span class="lab">Exemple</span>Un livreur renverse un piéton en reculant pendant sa tournée. Le piéton est blessé (dommage) à cause de la manœuvre du livreur (fait générateur et lien de causalité). C'est l'<b>employeur</b> du livreur qui devra indemniser la victime.</div>`},
+  { titre:"Droit : le contrat de travail et sa rupture", freq:"Fréquent", html:`
+    <p>Un contrat de travail suppose trois éléments : une <b>prestation de travail</b>, une <b>rémunération</b> et un <b>lien de subordination</b> (l'employeur donne des ordres, contrôle et peut sanctionner).</p>
+    <div class="tbl"><table><tr><th>Mode de rupture</th><th>Qui décide</th><th>À retenir</th></tr>
+    <tr><td>Démission</td><td>Le salarié</td><td>Sa volonté doit être claire et sans ambiguïté. Pas d'allocations chômage en principe.</td></tr>
+    <tr><td>Licenciement</td><td>L'employeur</td><td>Il faut une <b>cause réelle et sérieuse</b> (article L1232-1 du Code du travail), pour motif personnel ou économique, et une procédure : convocation, entretien préalable, lettre de licenciement.</td></tr>
+    <tr><td>Rupture conventionnelle</td><td>Les deux, d'un commun accord</td><td>Elle doit être validée (homologuée) par l'administration. Le salarié a droit aux allocations chômage.</td></tr></table></div>
+    <div class="ex"><span class="lab">Exemple</span>Un employeur licencie une salariée « parce qu'elle ne s'entend pas avec lui », sans fait précis. Ce n'est pas une cause réelle et sérieuse : la salariée peut saisir le conseil de prud'hommes et obtenir une indemnité.</div>`},
+  { titre:"Droit : le numérique et les données personnelles", freq:"Fréquent", html:`
+    <ul><li><b>Contrat en ligne</b> : l'acheteur doit pouvoir vérifier sa commande et son prix total avant de la confirmer (article 1127-2 du Code civil, la règle du « double clic »).</li>
+    <li><b>Droit de rétractation</b> : 14 jours pour le consommateur qui achète à distance (article L221-18 du Code de la consommation).</li>
+    <li><b>Données personnelles</b> : le règlement général sur la protection des données impose une raison légale pour les collecter (par exemple le consentement), une information claire, et donne aux personnes un droit d'accès, de rectification et d'effacement.</li>
+    <li><b>Marque et nom de domaine</b> : une marque enregistrée à l'Institut national de la propriété industrielle est protégée 10 ans, renouvelables. Un nom de domaine qui imite une marque connue pour attirer ses clients peut être sanctionné (contrefaçon ou concurrence déloyale).</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Un site crée l'adresse « jouetsdiscount-promo.com » avec les couleurs et le logo d'un grand site de jouets. Le titulaire de la marque peut agir en justice pour faire fermer le site et obtenir des dommages et intérêts.</div>`}
+  ],
+  quiz:[
+  {q:"« Le taux de chômage baisse en France au troisième trimestre. » C'est un sujet de…",o:["Économie","Management"],a:0,e:"On parle d'un pays entier, pas d'une organisation précise : c'est de l'économie."},
+  {q:"« La gérante d'une boutique décide de réorganiser les horaires de ses vendeuses. » C'est un sujet de…",o:["Économie","Management"],a:1,e:"Une décision prise à l'intérieur d'une organisation : c'est du management."},
+  {q:"Une boulangerie vend 20 000 euros et achète 6 000 euros de matières premières et d'énergie. Sa valeur ajoutée est de :",o:["26 000 euros","14 000 euros","20 000 euros"],a:1,e:"Valeur ajoutée = ventes − consommations intermédiaires = 20 000 − 6 000 = 14 000 euros."},
+  {q:"Quelle est la finalité d'une association comme un centre social ?",o:["Lucrative","Non lucrative","Commerciale"],a:1,e:"Une association ne cherche pas à partager des bénéfices entre ses membres : sa finalité est non lucrative."},
+  {q:"Dans « PO3C » de Fayol, que signifie le P ?",o:["Produire","Prévoir","Payer"],a:1,e:"Prévoir, Organiser, Commander, Coordonner, Contrôler."},
+  {q:"Un nouveau concurrent s'installe à côté de l'entreprise. Dans une matrice SWOT, c'est…",o:["Une faiblesse","Une menace","Une force"],a:1,e:"Cela vient de l'extérieur et c'est négatif : c'est une menace."},
+  {q:"Le manager demande l'avis de ses salariés puis décide seul. Style de direction selon Likert :",o:["Participatif","Consultatif","Autoritaire paternaliste"],a:1,e:"Il consulte mais garde la décision finale : style consultatif."},
+  {q:"Quel auteur parle de « rationalité limitée » ?",o:["Adam Smith","Herbert Simon","Michael Porter"],a:1,e:"Herbert Simon : le décideur choisit la première solution satisfaisante, faute d'informations complètes."},
+  {q:"Décider d'ouvrir une filiale à l'étranger est une décision…",o:["Opérationnelle","Tactique","Stratégique"],a:2,e:"Elle engage l'avenir de l'entreprise sur le long terme : décision stratégique (classement d'Ansoff)."},
+  {q:"Les trottinettes électriques face aux taxis, dans les cinq forces de Porter, ce sont…",o:["Des produits de substitution","Des fournisseurs","Des clients"],a:0,e:"Elles répondent au même besoin (se déplacer) d'une autre façon : produit de substitution."},
+  {q:"Dans un syllogisme juridique, la « majeure » c'est…",o:["Les faits","La règle de droit","La conclusion"],a:1,e:"La majeure est la règle de droit, avec sa source (article)."},
+  {q:"Un acheteur a été trompé par un mensonge du vendeur. C'est…",o:["Une erreur","Un dol","Une violence"],a:1,e:"Le dol : l'autre partie a menti ou manœuvré pour obtenir le consentement."},
+  {q:"Dans une société à responsabilité limitée, les associés sont responsables des dettes…",o:["Sur tous leurs biens","Dans la limite de leurs apports","Jamais"],a:1,e:"La responsabilité est limitée au montant de leurs apports."},
+  {q:"Délai de rétractation pour un achat en ligne :",o:["7 jours","14 jours","30 jours"],a:1,e:"14 jours, article L221-18 du Code de la consommation."},
+  {q:"Le fournisseur ne livre pas : le client refuse de payer tant qu'il n'est pas livré. C'est…",o:["L'exception d'inexécution","La force majeure","La résolution"],a:0,e:"Il suspend sa propre obligation tant que l'autre n'exécute pas la sienne."},
+  {q:"Les trois conditions de la responsabilité civile :",o:["Faute, contrat, juge","Fait générateur, dommage, lien de causalité","Dommage, assurance, plainte"],a:1,e:"Il faut un fait générateur, un dommage et un lien de causalité entre les deux."},
+  {q:"Un licenciement doit reposer sur…",o:["Une cause réelle et sérieuse","L'accord du salarié","Une décision du juge"],a:0,e:"Article L1232-1 du Code du travail."},
+  {q:"La rupture conventionnelle est…",o:["Décidée par l'employeur seul","Un accord entre l'employeur et le salarié","Une démission"],a:1,e:"Elle est conclue d'un commun accord et homologuée par l'administration."}
+  ],
+  cas:[
+  {titre:"La Petite Fabrique, atelier de bougies", enonce:`<p>Léa a créé La Petite Fabrique, une entreprise individuelle qui fabrique des bougies artisanales à Lyon. Elle emploie deux salariées. Ses bougies sont très appréciées pour leurs parfums originaux, mais son atelier est trop petit pour produire plus. Depuis un an, la mode du « fait main » et des produits locaux progresse fortement. En revanche, le prix de la cire a augmenté de 30 % et une grande enseigne vient de lancer des bougies parfumées à petit prix.</p><p>Léa hésite : louer un local plus grand ou rester petite. Elle réunit ses deux salariées, écoute leurs avis, puis décide seule.</p>`,
+   qs:[
+    {q:"1. Quelle est la finalité de La Petite Fabrique ? Justifiez.",r:"Finalité <b>lucrative</b> : c'est une entreprise privée qui vend ses bougies pour réaliser des bénéfices."},
+    {q:"2. Réalisez le diagnostic SWOT de l'entreprise.",r:"<b>Forces</b> (interne, positif) : parfums originaux, bougies appréciées.<br><b>Faiblesses</b> (interne, négatif) : atelier trop petit, production limitée.<br><b>Opportunités</b> (externe, positif) : mode du fait main et des produits locaux.<br><b>Menaces</b> (externe, négatif) : hausse de 30 % du prix de la cire, nouveau concurrent à petit prix."},
+    {q:"3. La décision de louer un local plus grand est-elle stratégique, tactique ou opérationnelle ?",r:"<b>Stratégique</b> : elle engage l'avenir de l'entreprise sur le long terme, elle est prise par la dirigeante et elle est difficile à annuler."},
+    {q:"4. Identifiez le style de direction de Léa.",r:"Style <b>consultatif</b> (Likert) : elle demande l'avis de ses salariées mais prend la décision finale seule."},
+    {q:"5. La hausse du prix de la cire : économie ou management ?",r:"<b>Économie</b> : c'est un phénomène de marché (prix d'une matière première), extérieur à l'entreprise. La réaction de Léa face à cette hausse, elle, relèverait du management."}
+   ]},
+  {titre:"Droit : Meubles Ébène, société à responsabilité limitée", enonce:`<p>La société à responsabilité limitée Meubles Ébène, créée par trois associés avec 10 000 euros d'apport chacun, vend des meubles sur son site internet.</p>
+   <p>Mme Roux a commandé une table en ligne le 15 janvier. Elle l'a reçue le 20 janvier. Le 28 janvier, elle écrit à la société pour annoncer qu'elle renvoie la table, qui ne lui plaît finalement pas. Le gérant refuse : « Nos meubles ne sont ni repris ni échangés. »</p>
+   <p>Par ailleurs, la société a de grosses difficultés. Un fournisseur impayé menace de saisir la maison de l'un des associés.</p>`,
+   qs:[
+    {q:"1. Formulez le problème juridique posé par la demande de Mme Roux.",r:"Un consommateur qui a acheté un bien à distance peut-il revenir sur son achat sans donner de motif, et le vendeur peut-il l'en empêcher ?"},
+    {q:"2. Résolvez ce problème avec un syllogisme juridique.",r:"<b>Majeure</b> : selon l'article L221-18 du Code de la consommation, le consommateur qui conclut un contrat à distance dispose de 14 jours pour exercer son droit de rétractation, sans avoir à se justifier ni à payer de pénalité. Pour un bien, le délai court à compter de sa réception. Le vendeur ne peut pas supprimer ce droit par une clause.<br><b>Mineure</b> : Mme Roux est une consommatrice qui a acheté une table sur internet, donc à distance. Elle l'a reçue le 20 janvier et a exercé son droit le 28 janvier, soit 8 jours après.<br><b>Conclusion</b> : Mme Roux est dans le délai. La phrase « ni repris ni échangés » ne s'applique pas à elle : la société doit accepter le retour et la rembourser."},
+    {q:"3. Le fournisseur peut-il saisir la maison de l'associé ? Justifiez.",r:"<b>Non.</b> Dans une société à responsabilité limitée, les associés ne sont responsables des dettes de la société que dans la limite de leurs apports (ici 10 000 euros chacun). La société est une personne morale avec son propre patrimoine : le fournisseur doit se faire payer sur les biens de la société, pas sur ceux des associés."}
+   ]}
+  ]
+},
+{ id:"p1", code:"P1", group:"Processus comptables", name:"Contrôle et traitement comptable des opérations commerciales", short:"Factures, avoirs, taxe sur la valeur ajoutée",
+  fiches:[
+  { titre:"La logique du débit et du crédit", freq:"Base de tout", html:`
+    <p>Chaque opération s'enregistre dans le <b>journal</b> avec au moins deux comptes : un au <b>débit</b> (colonne de gauche) et un au <b>crédit</b> (colonne de droite). Le total des débits est toujours égal au total des crédits.</p>
+    <ul><li>On met au <b>débit</b> ce qui <b>entre</b> ou ce qu'on <b>consomme</b> : une charge, un achat, une créance sur un client.</li>
+    <li>On met au <b>crédit</b> ce qui <b>sort</b> ou ce qu'on <b>gagne</b> : une vente, une dette envers un fournisseur.</li></ul>
+    <div class="tip"><span class="lab">Astuce</span>Classe 6 = charges (toujours au débit quand elles augmentent). Classe 7 = produits (toujours au crédit quand ils augmentent). 401 = fournisseurs (on leur doit de l'argent : crédit). 411 = clients (ils nous doivent de l'argent : débit).</div>`},
+  { titre:"La taxe sur la valeur ajoutée (TVA)", freq:"Présent dans presque tous les sujets", html:`
+    <p>La <b>taxe sur la valeur ajoutée</b> est un impôt payé au final par le consommateur. L'entreprise ne fait que la <b>collecter</b> pour l'État.</p>
+    <ul><li>Quand l'entreprise <b>vend</b>, elle facture la taxe au client : c'est la <b>taxe collectée</b> (compte 44571), une dette envers l'État → au <b>crédit</b>.</li>
+    <li>Quand l'entreprise <b>achète</b>, elle paie la taxe à son fournisseur : c'est la <b>taxe déductible</b> (compte 44566 pour les biens et services), une créance sur l'État → au <b>débit</b>.</li>
+    <li>Chaque mois : taxe à payer à l'État = taxe collectée − taxe déductible.</li></ul>
+    <p>Taux en France : 20 % (taux normal), 10 % (restauration, travaux), 5,5 % (alimentation, livres), 2,1 % (médicaments remboursés, presse).</p>
+    <div class="ex"><span class="lab">Exemple</span>Prix hors taxes 500 euros, taux 20 % → taxe = 500 × 0,20 = 100 euros → toutes taxes comprises = 600 euros.<br>Pour retrouver le hors taxes à partir du toutes taxes comprises : 600 ÷ 1,20 = 500.</div>`},
+  { titre:"Les réductions : remise, rabais, ristourne et escompte", freq:"Très fréquent", html:`
+    <div class="tbl"><table><tr><th>Réduction</th><th>Pourquoi on l'accorde</th><th>Type</th></tr>
+    <tr><td>Rabais</td><td>Défaut de qualité ou retard de livraison</td><td>Commerciale</td></tr>
+    <tr><td>Remise</td><td>Grosse quantité achetée, client fidèle</td><td>Commerciale</td></tr>
+    <tr><td>Ristourne</td><td>Calculée sur le total des achats d'une période (par exemple l'année)</td><td>Commerciale</td></tr>
+    <tr><td>Escompte</td><td>Le client paie plus tôt que prévu</td><td><b>Financière</b></td></tr></table></div>
+    <div class="tip"><span class="lab">À retenir</span>Les réductions <b>commerciales</b> présentes sur la facture <b>ne s'enregistrent pas</b> : on comptabilise directement le montant net. L'<b>escompte</b>, lui, s'enregistre : compte 665 « Escomptes accordés » (charge) chez le vendeur, compte 765 « Escomptes obtenus » (produit) chez l'acheteur.</div>
+    <p><b>Ordre de calcul</b> sur une facture : prix brut → remises commerciales → <b>net commercial</b> → escompte → <b>net financier</b> → taxe calculée sur le net financier → total toutes taxes comprises.</p>`},
+  { titre:"Enregistrer une facture de vente", freq:"Très fréquent", html:`
+    <div class="ex"><span class="lab">Exemple</span>Le 10 mars, la société Lumia vend des lampes au client Durand : prix brut 1 000 euros, remise 10 %, escompte 2 %, taxe 20 %.<br>
+    Remise : 1 000 × 10 % = 100 → net commercial = 900<br>
+    Escompte : 900 × 2 % = 18 → net financier = 882<br>
+    Taxe : 882 × 20 % = 176,40 → toutes taxes comprises = 1 058,40</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>411</td><td>Clients (Durand)</td><td class="num">1 058,40</td><td></td></tr>
+    <tr><td>665</td><td>Escomptes accordés</td><td class="num">18,00</td><td></td></tr>
+    <tr><td>707</td><td>Ventes de marchandises</td><td></td><td class="num">900,00</td></tr>
+    <tr><td>44571</td><td>Taxe sur la valeur ajoutée collectée</td><td></td><td class="num">176,40</td></tr>
+    <tr><th colspan="2">Totaux</th><td class="num">1 076,40</td><td class="num">1 076,40</td></tr></table></div>
+    <div class="trap"><span class="lab">Piège</span>Le compte 707 reçoit le <b>net commercial</b> (900), pas le net financier : l'escompte est enregistré à part, dans le 665.</div>`},
+  { titre:"Enregistrer une facture d'achat", freq:"Très fréquent", html:`
+    <div class="ex"><span class="lab">Exemple</span>Le client Durand enregistre la même facture chez lui, côté achat.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>607</td><td>Achats de marchandises</td><td class="num">900,00</td><td></td></tr>
+    <tr><td>44566</td><td>Taxe sur la valeur ajoutée déductible</td><td class="num">176,40</td><td></td></tr>
+    <tr><td>401</td><td>Fournisseurs (Lumia)</td><td></td><td class="num">1 058,40</td></tr>
+    <tr><td>765</td><td>Escomptes obtenus</td><td></td><td class="num">18,00</td></tr>
+    <tr><th colspan="2">Totaux</th><td class="num">1 076,40</td><td class="num">1 076,40</td></tr></table></div>
+    <p><b>Frais de port</b> : chez l'acheteur, compte 6241 « Transports sur achats » ; chez le vendeur qui les refacture, compte 7085 « Ports et frais accessoires facturés ». Ils sont soumis à la taxe.</p>`},
+  { titre:"La facture d'avoir", freq:"Très fréquent", html:`
+    <div class="def">Une <b>facture d'avoir</b> est une facture « à l'envers » : elle annule tout ou partie d'une facture déjà envoyée (retour de marchandises, rabais accordé après coup, erreur).</div>
+    <p>On inverse donc le sens habituel. Si la réduction est accordée <b>après</b> la facture, on utilise les comptes de réductions : 709 chez le vendeur, 609 chez l'acheteur.</p>
+    <div class="ex"><span class="lab">Exemple</span>Lumia accorde à Durand un rabais de 50 euros hors taxes pour une lampe rayée. Taxe : 10 euros. Total : 60 euros.</div>
+    <div class="tbl"><table><tr><th colspan="4">Chez le vendeur (Lumia)</th></tr><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>709</td><td>Rabais, remises et ristournes accordés</td><td class="num">50,00</td><td></td></tr>
+    <tr><td>44571</td><td>Taxe collectée</td><td class="num">10,00</td><td></td></tr>
+    <tr><td>411</td><td>Clients (Durand)</td><td></td><td class="num">60,00</td></tr></table></div>
+    <div class="tbl"><table><tr><th colspan="4">Chez l'acheteur (Durand)</th></tr><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>401</td><td>Fournisseurs (Lumia)</td><td class="num">60,00</td><td></td></tr>
+    <tr><td>609</td><td>Rabais, remises et ristournes obtenus</td><td></td><td class="num">50,00</td></tr>
+    <tr><td>44566</td><td>Taxe déductible</td><td></td><td class="num">10,00</td></tr></table></div>
+    <div class="tip"><span class="lab">Astuce</span>Pour un <b>retour de marchandises</b>, on annule directement dans le compte d'origine (707 chez le vendeur, 607 chez l'acheteur) au lieu de 709 et 609.</div>`}
+  ],
+  quiz:[
+  {q:"Chez le vendeur, la taxe sur la valeur ajoutée facturée au client va dans le compte…",o:["44566 au débit","44571 au crédit","401 au crédit"],a:1,e:"C'est de la taxe collectée, une dette envers l'État : 44571 au crédit."},
+  {q:"Prix toutes taxes comprises 240 euros, taux 20 %. Le prix hors taxes est de :",o:["192 euros","200 euros","220 euros"],a:1,e:"240 ÷ 1,20 = 200. Attention : on ne retire pas 20 % de 240 (ce qui donnerait 192)."},
+  {q:"Une remise de 5 % figure sur la facture. On l'enregistre…",o:["Au compte 709","Au compte 665","On ne l'enregistre pas"],a:2,e:"Les réductions commerciales sur facture ne sont pas comptabilisées : on enregistre le net commercial."},
+  {q:"Chez l'acheteur, un escompte obtenu s'enregistre au compte :",o:["665 au débit","765 au crédit","609 au crédit"],a:1,e:"C'est un produit financier pour l'acheteur : 765 Escomptes obtenus, au crédit."},
+  {q:"La taxe est calculée sur…",o:["Le prix brut","Le net commercial","Le net financier"],a:2,e:"Toujours sur le dernier montant hors taxes, après remises et escompte : le net financier."},
+  {q:"Le client retourne des marchandises défectueuses. Chez le vendeur, on débite :",o:["Le compte 707","Le compte 411","Le compte 607"],a:0,e:"Pour un retour, on annule la vente directement dans le 707 (au débit), et on crédite le 411."},
+  {q:"Les frais de port payés par l'acheteur vont au compte :",o:["7085","6241","607"],a:1,e:"6241 Transports sur achats. Le 7085 est utilisé par le vendeur qui refacture les frais."},
+  {q:"Prix brut 2 000 euros, remise 10 %, escompte 1 %. Le net financier est de :",o:["1 782 euros","1 780 euros","1 800 euros"],a:0,e:"2 000 − 200 = 1 800 ; 1 800 × 1 % = 18 ; 1 800 − 18 = 1 782."}
+  ],
+  cas:[
+  {titre:"Société Vertéo, matériel de jardin", enonce:`<p>La société Vertéo vend du matériel de jardin. Le 15 avril, elle envoie la facture n° 248 à son client Jardiland Nord : 20 tondeuses à 150 euros hors taxes l'unité, remise de 5 %, escompte de 2 % pour paiement sous 8 jours, frais de port refacturés 60 euros hors taxes (sans remise ni escompte). Taxe sur la valeur ajoutée : 20 %.</p><p>Le 20 avril, Jardiland Nord retourne 2 tondeuses abîmées. Vertéo envoie une facture d'avoir.</p>`,
+   qs:[
+    {q:"1. Calculez le montant de la facture n° 248.",r:"Brut : 20 × 150 = 3 000<br>Remise 5 % : 150 → net commercial 2 850<br>Escompte 2 % : 57 → net financier 2 793<br>Frais de port : 60<br>Base taxable : 2 793 + 60 = 2 853<br>Taxe 20 % : 570,60<br><b>Total toutes taxes comprises : 3 423,60 euros</b>"},
+    {q:"2. Enregistrez la facture chez Vertéo.",r:`<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>411 Clients</td><td class="num">3 423,60</td><td></td></tr><tr><td>665 Escomptes accordés</td><td class="num">57,00</td><td></td></tr><tr><td>707 Ventes de marchandises</td><td></td><td class="num">2 850,00</td></tr><tr><td>7085 Ports facturés</td><td></td><td class="num">60,00</td></tr><tr><td>44571 Taxe collectée</td><td></td><td class="num">570,60</td></tr><tr><th>Totaux</th><td class="num">3 480,60</td><td class="num">3 480,60</td></tr></table></div>`},
+    {q:"3. Calculez l'avoir pour les 2 tondeuses retournées (mêmes conditions de remise et d'escompte).",r:"Brut : 2 × 150 = 300 → remise 15 → 285 → escompte 5,70 → net financier 279,30<br>Taxe : 55,86<br><b>Total de l'avoir : 335,16 euros</b>"},
+    {q:"4. Enregistrez l'avoir chez Vertéo.",r:`<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>707 Ventes de marchandises</td><td class="num">285,00</td><td></td></tr><tr><td>44571 Taxe collectée</td><td class="num">55,86</td><td></td></tr><tr><td>665 Escomptes accordés</td><td></td><td class="num">5,70</td></tr><tr><td>411 Clients</td><td></td><td class="num">335,16</td></tr><tr><th>Totaux</th><td class="num">340,86</td><td class="num">340,86</td></tr></table></div>On inverse l'écriture d'origine : c'est un retour, donc on débite directement le 707.`}
+   ]}
+  ]
+},
+{ id:"p6", code:"P6", group:"Processus comptables", name:"Analyse de la situation financière", short:"Soldes intermédiaires de gestion",
+  fiches:[
+  { titre:"Les soldes intermédiaires de gestion : à quoi ça sert", freq:"Tombe très souvent", html:`
+    <p>Le compte de résultat donne un seul chiffre final : le bénéfice ou la perte. Les <b>soldes intermédiaires de gestion</b> découpent ce résultat en étapes pour comprendre <b>d'où vient</b> le bénéfice (ou la perte).</p>
+    <div class="ex"><span class="lab">Image pour comprendre</span>C'est comme ta fiche de paie : le salaire brut, puis les cotisations retirées, puis le net, puis le net après impôt. Chaque étape t'explique où part l'argent.</div>
+    <p>Les principaux soldes, dans l'ordre :</p>
+    <ul><li><b>Marge commerciale</b> (pour les entreprises qui revendent)</li><li><b>Production de l'exercice</b> (pour les entreprises qui fabriquent)</li><li><b>Valeur ajoutée</b></li><li><b>Excédent brut d'exploitation</b></li><li><b>Résultat d'exploitation</b></li><li>Résultat courant avant impôts, résultat exceptionnel, résultat de l'exercice</li></ul>`},
+  { titre:"Marge commerciale et valeur ajoutée", freq:"Très fréquent", html:`
+    <div class="def"><b>Marge commerciale</b> = ventes de marchandises − coût d'achat des marchandises vendues.<br>Coût d'achat des marchandises vendues = achats de marchandises ± variation de stock de marchandises.</div>
+    <div class="ex"><span class="lab">Exemple</span>Un magasin vend 80 000 euros de vêtements. Il a acheté 50 000 euros de vêtements, et son stock a <b>diminué</b> de 2 000 euros (il a vendu un peu de son ancien stock).<br>Coût d'achat des marchandises vendues = 50 000 + 2 000 = 52 000<br>Marge commerciale = 80 000 − 52 000 = <b>28 000 euros</b></div>
+    <div class="trap"><span class="lab">Piège</span>Dans le compte 6037 « Variation des stocks de marchandises », une diminution du stock apparaît en positif (elle s'ajoute aux achats) et une augmentation en négatif.</div>
+    <div class="def"><b>Valeur ajoutée</b> = marge commerciale + production de l'exercice − consommations en provenance des tiers (matières premières, autres achats et charges externes : loyer, électricité, assurance, honoraires…).</div>`},
+  { titre:"Excédent brut d'exploitation et résultat d'exploitation", freq:"Très fréquent", html:`
+    <div class="def"><b>Excédent brut d'exploitation</b> = valeur ajoutée + subventions d'exploitation − impôts et taxes − charges de personnel (salaires et cotisations sociales).</div>
+    <p>Il mesure ce que l'activité normale rapporte, <b>avant</b> les amortissements, les intérêts et les impôts sur les bénéfices. C'est l'indicateur préféré des banquiers.</p>
+    <div class="ex"><span class="lab">Exemple</span>Valeur ajoutée 120 000 ; impôts et taxes 5 000 ; salaires 60 000 ; cotisations sociales 25 000.<br>Excédent brut d'exploitation = 120 000 − 5 000 − 60 000 − 25 000 = <b>30 000 euros</b></div>
+    <div class="def"><b>Résultat d'exploitation</b> = excédent brut d'exploitation + reprises et transferts de charges + autres produits − dotations aux amortissements et provisions − autres charges.</div>
+    <div class="tip"><span class="lab">Astuce pour l'examen</span>Toujours présenter dans un tableau à deux colonnes (produits / charges) et faire une phrase de commentaire après chaque solde : « La valeur ajoutée représente x % du chiffre d'affaires, ce qui signifie… ».</div>`},
+  { titre:"Le bilan fonctionnel : fonds de roulement, besoin en fonds de roulement, trésorerie", freq:"Tombe très souvent", html:`
+    <p>Le bilan fonctionnel classe le bilan selon les <b>fonctions</b> : ce qui dure (investissement et financement durable) et ce qui tourne tous les jours (exploitation).</p>
+    <div class="def"><b>Fonds de roulement net global</b> = ressources stables − emplois stables.<br>Ressources stables = capitaux propres + amortissements et dépréciations + dettes financières (emprunts).<br>Emplois stables = immobilisations à leur valeur brute.</div>
+    <div class="def"><b>Besoin en fonds de roulement d'exploitation</b> = (stocks + créances clients) − (dettes fournisseurs + dettes fiscales et sociales).<br>C'est l'argent « bloqué » par le cycle quotidien : on paie les fournisseurs avant d'être payé par les clients.</div>
+    <div class="def"><b>Trésorerie nette</b> = fonds de roulement − besoin en fonds de roulement = disponibilités − concours bancaires (découverts).</div>
+    <div class="ex"><span class="lab">Exemple</span>Ressources stables 500 000, emplois stables 420 000 → fonds de roulement = <b>80 000</b>.<br>Stocks 40 000 + clients 50 000 − fournisseurs 25 000 − dettes fiscales et sociales 5 000 → besoin en fonds de roulement = <b>60 000</b>.<br>Trésorerie nette = 80 000 − 60 000 = <b>20 000</b> : l'équilibre est bon, le fonds de roulement finance tout le besoin.</div>
+    <div class="trap"><span class="lab">Piège</span>Dans le bilan fonctionnel, les immobilisations sont à leur valeur <b>brute</b>, et les amortissements passent dans les ressources stables.</div>`},
+  { titre:"La capacité d'autofinancement", freq:"Fréquent", html:`
+    <div class="def">La <b>capacité d'autofinancement</b> est l'argent que l'activité de l'année permet de dégager, et que l'entreprise peut utiliser pour investir, rembourser ses emprunts ou verser des dividendes.</div>
+    <p><b>Méthode additive</b> (à partir du résultat) : on retire du résultat ce qui n'est pas de l'argent réel.</p>
+    <div class="def">Capacité d'autofinancement = résultat de l'exercice + dotations aux amortissements, dépréciations et provisions − reprises + valeur nette comptable des éléments d'actif cédés − produits des cessions d'éléments d'actif − quotes-parts de subventions d'investissement virées au résultat</div>
+    <div class="ex"><span class="lab">Exemple</span>Résultat 30 000 ; dotations 12 000 ; reprises 2 000 ; une machine vendue 8 000 euros, dont la valeur nette comptable était de 5 000.<br>30 000 + 12 000 − 2 000 + 5 000 − 8 000 = <b>37 000 euros</b></div>
+    <div class="tip"><span class="lab">Pourquoi ces corrections ?</span>Une dotation diminue le résultat sans sortie d'argent : on la rajoute. La vente d'une machine est une opération exceptionnelle, pas de l'activité courante : on l'enlève.</div>`}
+  ],
+  quiz:[
+  {q:"Ventes de marchandises 50 000, coût d'achat des marchandises vendues 32 000. Marge commerciale :",o:["82 000","18 000","32 000"],a:1,e:"50 000 − 32 000 = 18 000 euros."},
+  {q:"Le stock de marchandises a augmenté de 1 000 euros. Achats : 40 000. Coût d'achat des marchandises vendues :",o:["41 000","39 000","40 000"],a:1,e:"Une partie des achats est restée en stock : 40 000 − 1 000 = 39 000."},
+  {q:"Les salaires interviennent dans le calcul de…",o:["La valeur ajoutée","L'excédent brut d'exploitation","La marge commerciale"],a:1,e:"Les charges de personnel sont retirées de la valeur ajoutée pour obtenir l'excédent brut d'exploitation."},
+  {q:"Les dotations aux amortissements sont retirées pour passer…",o:["De l'excédent brut d'exploitation au résultat d'exploitation","De la marge commerciale à la valeur ajoutée","De la valeur ajoutée à l'excédent brut d'exploitation"],a:0,e:"Résultat d'exploitation = excédent brut d'exploitation − dotations + reprises + autres produits − autres charges."},
+  {q:"Le loyer du magasin intervient dans le calcul de…",o:["La marge commerciale","La valeur ajoutée","Le résultat exceptionnel"],a:1,e:"Le loyer fait partie des « autres achats et charges externes » : il est retiré pour calculer la valeur ajoutée."},
+  {q:"Pourquoi les banquiers regardent-ils surtout l'excédent brut d'exploitation ?",o:["Parce qu'il inclut les impôts","Parce qu'il montre ce que rapporte l'activité normale, avant amortissements et frais financiers","Parce qu'il est toujours positif"],a:1,e:"Il mesure la capacité de l'activité elle-même à dégager de l'argent, indépendamment de la façon dont l'entreprise est financée."},
+  {q:"Ressources stables 300 000, emplois stables 250 000. Fonds de roulement :",o:["50 000","550 000","−50 000"],a:0,e:"300 000 − 250 000 = 50 000."},
+  {q:"Fonds de roulement 50 000, besoin en fonds de roulement 70 000. Trésorerie nette :",o:["+20 000","−20 000","120 000"],a:1,e:"50 000 − 70 000 = −20 000 : l'entreprise est à découvert."},
+  {q:"Dans le calcul de la capacité d'autofinancement, les dotations aux amortissements sont…",o:["Ajoutées au résultat","Retirées du résultat","Ignorées"],a:0,e:"Elles ont diminué le résultat sans sortie d'argent : on les rajoute."}
+  ],
+  cas:[
+  {titre:"Boutique Indigo, prêt-à-porter", enonce:`<p>Voici les éléments du compte de résultat de la boutique Indigo pour l'année N (en euros) :</p>
+   <div class="tbl"><table><tr><th>Élément</th><th>Montant</th></tr>
+   <tr><td>Ventes de marchandises</td><td class="num">150 000</td></tr><tr><td>Achats de marchandises</td><td class="num">90 000</td></tr>
+   <tr><td>Variation de stock de marchandises (le stock a diminué)</td><td class="num">3 000</td></tr><tr><td>Autres achats et charges externes (loyer, électricité, publicité)</td><td class="num">18 000</td></tr>
+   <tr><td>Impôts et taxes</td><td class="num">2 000</td></tr><tr><td>Salaires</td><td class="num">25 000</td></tr>
+   <tr><td>Cotisations sociales</td><td class="num">10 000</td></tr><tr><td>Dotations aux amortissements</td><td class="num">4 000</td></tr></table></div>`,
+   qs:[
+    {q:"1. Calculez la marge commerciale.",r:"Coût d'achat des marchandises vendues = 90 000 + 3 000 = 93 000 (le stock a diminué, donc on a vendu plus que ce qu'on a acheté).<br><b>Marge commerciale = 150 000 − 93 000 = 57 000 euros</b>"},
+    {q:"2. Calculez la valeur ajoutée.",r:"<b>Valeur ajoutée = 57 000 − 18 000 = 39 000 euros</b>, soit 26 % des ventes (39 000 ÷ 150 000)."},
+    {q:"3. Calculez l'excédent brut d'exploitation.",r:"<b>Excédent brut d'exploitation = 39 000 − 2 000 − 25 000 − 10 000 = 2 000 euros</b>"},
+    {q:"4. Calculez le résultat d'exploitation et commentez.",r:"<b>Résultat d'exploitation = 2 000 − 4 000 = −2 000 euros</b> (perte).<br>Commentaire : la marge commerciale est correcte (38 % des ventes), mais les charges de personnel absorbent presque toute la valeur ajoutée. L'activité ne rapporte pas assez pour couvrir l'usure du matériel (amortissements). Pistes : augmenter les ventes, revoir l'organisation des horaires ou négocier le loyer."}
+   ]},
+  {titre:"Bilan fonctionnel : société Atlantis", enonce:`<p>Extrait du bilan fonctionnel de la société Atlantis au 31 décembre N (en euros) :</p>
+   <div class="tbl"><table><tr><th>Élément</th><th>Montant</th></tr>
+   <tr><td>Capitaux propres</td><td class="num">180 000</td></tr><tr><td>Amortissements et dépréciations</td><td class="num">60 000</td></tr>
+   <tr><td>Emprunts</td><td class="num">90 000</td></tr><tr><td>Immobilisations brutes</td><td class="num">300 000</td></tr>
+   <tr><td>Stocks</td><td class="num">45 000</td></tr><tr><td>Créances clients</td><td class="num">70 000</td></tr>
+   <tr><td>Dettes fournisseurs</td><td class="num">40 000</td></tr><tr><td>Dettes fiscales et sociales</td><td class="num">15 000</td></tr></table></div>`,
+   qs:[
+    {q:"1. Calculez le fonds de roulement net global.",r:"Ressources stables = 180 000 + 60 000 + 90 000 = 330 000<br>Emplois stables = 300 000<br><b>Fonds de roulement = 30 000 euros</b>"},
+    {q:"2. Calculez le besoin en fonds de roulement d'exploitation.",r:"(45 000 + 70 000) − (40 000 + 15 000) = 115 000 − 55 000 = <b>60 000 euros</b>"},
+    {q:"3. Calculez la trésorerie nette et commentez.",r:"30 000 − 60 000 = <b>−30 000 euros</b>.<br>Le fonds de roulement ne couvre que la moitié du besoin : l'entreprise vit à découvert, ce qui coûte des intérêts. Pistes : réduire les délais de paiement des clients, réduire les stocks, négocier des délais plus longs avec les fournisseurs, ou augmenter les ressources stables (apport des associés, emprunt à long terme)."}
+   ]}
+  ]
+},
+{ id:"p2", code:"P2", group:"Processus comptables", name:"Contrôle et production de l'information financière", short:"Travaux d'inventaire, comptes annuels",
+  fiches:[
+  { titre:"Les travaux d'inventaire : pourquoi on les fait", freq:"Base du processus 2", html:`
+    <p>À la fin de l'année (la <b>clôture de l'exercice</b>, souvent le 31 décembre), le comptable fait des écritures de correction pour que les comptes donnent une <b>image fidèle</b> de l'entreprise. Ce sont les <b>travaux d'inventaire</b>.</p>
+    <p>Deux grands principes les justifient :</p>
+    <ul><li><b>L'indépendance des exercices</b> : chaque année ne supporte que les charges et produits qui la concernent.</li>
+    <li><b>La prudence</b> : on enregistre les pertes probables, même si elles ne sont pas encore certaines, mais jamais les gains seulement probables.</li></ul>
+    <p>Les principaux travaux : les <b>amortissements</b>, les <b>dépréciations</b> (créances clients, stocks), les <b>charges et produits constatés d'avance</b>, les <b>charges à payer et produits à recevoir</b>, la <b>variation des stocks</b>.</p>
+    <div class="ex"><span class="lab">Exemple</span>Tu paies ton assurance auto le 1er octobre pour un an. Au 31 décembre, seuls 3 mois concernent cette année : les 9 autres mois concernent l'année suivante. Le comptable va « sortir » ces 9 mois des charges de l'année.</div>`},
+  { titre:"L'amortissement linéaire", freq:"Tombe à presque tous les examens", html:`
+    <div class="def">Une <b>immobilisation</b> (machine, ordinateur, véhicule) s'use pendant plusieurs années. L'<b>amortissement</b> répartit son coût sur sa durée d'utilisation. Chaque année, on enregistre une charge : la <b>dotation aux amortissements</b>.</div>
+    <ul><li><b>Base amortissable</b> = prix d'achat hors taxes + frais pour la mettre en service (livraison, installation).</li>
+    <li><b>Taux linéaire</b> = 100 ÷ durée d'utilisation (5 ans → 20 %).</li>
+    <li><b>Annuité</b> = base × taux.</li>
+    <li>La première année, on calcule <b>au prorata du temps</b> (en mois ou en jours), à partir de la date de mise en service.</li>
+    <li><b>Valeur nette comptable</b> = valeur d'origine − total des amortissements déjà pratiqués.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Machine achetée 12 000 euros hors taxes le 1er avril N, durée 5 ans. Clôture le 31 décembre.<br>Annuité pleine = 12 000 × 20 % = 2 400<br>Année N (9 mois, d'avril à décembre) = 2 400 × 9/12 = <b>1 800 euros</b><br>Valeur nette comptable fin N = 12 000 − 1 800 = 10 200</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>6811</td><td>Dotations aux amortissements</td><td class="num">1 800</td><td></td></tr>
+    <tr><td>2815</td><td>Amortissements des installations techniques, matériel et outillage</td><td></td><td class="num">1 800</td></tr></table></div>
+    <div class="trap"><span class="lab">Piège</span>La dernière année, on ne prend que les mois restants (ici 3 mois en N+5) pour que le total amorti soit exactement égal à 12 000.</div>`},
+  { titre:"La dépréciation des créances clients", freq:"Très fréquent", html:`
+    <p>Quand un client risque de ne pas payer (difficultés, liquidation), sa créance devient <b>douteuse</b>. Par prudence, on enregistre la perte probable.</p>
+    <p>Deux étapes :</p>
+    <ul><li><b>Reclasser</b> la créance du compte 411 « Clients » au compte 416 « Clients douteux », pour le montant toutes taxes comprises.</li>
+    <li><b>Déprécier</b> le montant <b>hors taxes</b> multiplié par le pourcentage de perte probable. On calcule sur le hors taxes car la taxe sera récupérée auprès de l'État si le client ne paie jamais.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Le client Martin doit 1 200 euros toutes taxes comprises (taxe 20 %). On estime la perte probable à 40 %.<br>Hors taxes = 1 200 ÷ 1,20 = 1 000 → dépréciation = 1 000 × 40 % = <b>400 euros</b></div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>416</td><td>Clients douteux</td><td class="num">1 200</td><td></td></tr>
+    <tr><td>411</td><td>Clients (Martin)</td><td></td><td class="num">1 200</td></tr>
+    <tr><td>6817</td><td>Dotations aux dépréciations des actifs circulants</td><td class="num">400</td><td></td></tr>
+    <tr><td>491</td><td>Dépréciations des comptes de clients</td><td></td><td class="num">400</td></tr></table></div>`},
+  { titre:"Charges et produits constatés d'avance, charges à payer", freq:"Très fréquent", html:`
+    <div class="def"><b>Charge constatée d'avance</b> : charge payée cette année mais qui concerne en partie l'année suivante. On la retire des charges de l'année avec le compte 486.</div>
+    <div class="ex"><span class="lab">Exemple</span>Assurance payée le 1er octobre N : 1 200 euros pour 12 mois. Les mois de janvier à septembre N+1 (9 mois) concernent N+1 : 1 200 × 9/12 = 900 euros.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>486</td><td>Charges constatées d'avance</td><td class="num">900</td><td></td></tr>
+    <tr><td>616</td><td>Primes d'assurance</td><td></td><td class="num">900</td></tr></table></div>
+    <div class="def"><b>Produit constaté d'avance</b> (compte 487) : produit encaissé cette année qui concerne l'année suivante. Exemple : un client paie en décembre un abonnement de janvier.</div>
+    <div class="def"><b>Charge à payer</b> : charge qui concerne cette année mais dont la facture n'est pas encore arrivée. Exemple : électricité de décembre facturée en janvier → compte 408 « Fournisseurs, factures non parvenues ».</div>
+    <div class="tip"><span class="lab">Astuce</span>Au début de l'année suivante, on <b>annule</b> (on « contrepasse ») toutes ces écritures, pour que la charge retombe dans la bonne année.</div>`},
+  { titre:"Le bilan et le compte de résultat", freq:"Base de tout", html:`
+    <div class="def"><b>Le bilan</b> est une photo de l'entreprise à une date précise : ce qu'elle possède (<b>l'actif</b>) et comment elle l'a financé (<b>le passif</b>). Actif = passif, toujours.</div>
+    <div class="tbl"><table><tr><th>Actif (ce qu'on possède)</th><th>Passif (d'où vient l'argent)</th></tr>
+    <tr><td>Immobilisations (bâtiment, machines)<br>Stocks<br>Créances clients<br>Trésorerie (banque, caisse)</td><td>Capitaux propres (capital apporté, résultat de l'année)<br>Dettes (emprunts, fournisseurs, État, organismes sociaux)</td></tr></table></div>
+    <div class="def"><b>Le compte de résultat</b> est un film de l'année : les <b>produits</b> (ce qu'on a gagné) moins les <b>charges</b> (ce qu'on a consommé) = le <b>résultat</b> (bénéfice ou perte).</div>
+    <div class="ex"><span class="lab">Exemple</span>Le bénéfice de l'année apparaît deux fois : en bas du compte de résultat, et au passif du bilan dans les capitaux propres. C'est le lien entre les deux documents.</div>`}
+  ],
+  quiz:[
+  {q:"Ordinateur acheté 3 000 euros hors taxes le 1er juillet N, amorti sur 3 ans. Dotation de l'année N :",o:["1 000 euros","500 euros","750 euros"],a:1,e:"Annuité pleine = 3 000 ÷ 3 = 1 000 ; 6 mois en N → 1 000 × 6/12 = 500."},
+  {q:"Taux d'amortissement linéaire pour une durée de 4 ans :",o:["20 %","25 %","40 %"],a:1,e:"100 ÷ 4 = 25 %."},
+  {q:"Une dépréciation de créance se calcule sur le montant…",o:["Toutes taxes comprises","Hors taxes","De la taxe seulement"],a:1,e:"La taxe sera récupérée auprès de l'État : la perte réelle porte sur le hors taxes."},
+  {q:"Le loyer de janvier N+1 a été payé en décembre N. Au 31 décembre N, on enregistre…",o:["Une charge à payer","Une charge constatée d'avance","Un produit constaté d'avance"],a:1,e:"La charge est payée en N mais concerne N+1 : charge constatée d'avance (compte 486)."},
+  {q:"La facture d'électricité de décembre arrivera en janvier. Au 31 décembre, on utilise le compte…",o:["408 Fournisseurs, factures non parvenues","486 Charges constatées d'avance","411 Clients"],a:0,e:"La charge concerne bien l'année N mais la facture n'est pas arrivée : charge à payer, compte 408."},
+  {q:"Valeur d'origine 20 000, amortissements cumulés 12 000. Valeur nette comptable :",o:["32 000","8 000","12 000"],a:1,e:"20 000 − 12 000 = 8 000 euros."}
+  ],
+  cas:[
+  {titre:"Imprimerie Duval, travaux de fin d'année", enonce:`<p>L'imprimerie Duval clôture son exercice le 31 décembre N. Le comptable doit passer les écritures d'inventaire suivantes :</p>
+   <ul><li>Une presse achetée 30 000 euros hors taxes, mise en service le 1er juillet N, amortie en linéaire sur 5 ans.</li>
+   <li>Le client Lebrun doit 2 400 euros toutes taxes comprises (taxe 20 %). Il est en difficulté : perte probable 50 %.</li>
+   <li>Le loyer de l'atelier, 3 600 euros, a été payé le 1er novembre N pour novembre, décembre et janvier.</li></ul>`,
+   qs:[
+    {q:"1. Calculez la dotation aux amortissements de N et la valeur nette comptable au 31 décembre N.",r:"Annuité pleine = 30 000 × 20 % = 6 000<br>N (6 mois) = 6 000 × 6/12 = <b>3 000 euros</b><br>Valeur nette comptable = 30 000 − 3 000 = <b>27 000 euros</b>"},
+    {q:"2. Enregistrez la dotation.",r:`<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>6811 Dotations aux amortissements</td><td class="num">3 000</td><td></td></tr><tr><td>2815 Amortissements du matériel</td><td></td><td class="num">3 000</td></tr></table></div>`},
+    {q:"3. Traitez la créance du client Lebrun.",r:`Hors taxes = 2 400 ÷ 1,20 = 2 000 ; dépréciation = 2 000 × 50 % = <b>1 000 euros</b><div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>416 Clients douteux</td><td class="num">2 400</td><td></td></tr><tr><td>411 Clients</td><td></td><td class="num">2 400</td></tr><tr><td>6817 Dotations aux dépréciations</td><td class="num">1 000</td><td></td></tr><tr><td>491 Dépréciations des comptes de clients</td><td></td><td class="num">1 000</td></tr></table></div>`},
+    {q:"4. Traitez le loyer.",r:`Un mois sur trois (janvier) concerne N+1 : 3 600 ÷ 3 = <b>1 200 euros</b> de charge constatée d'avance.<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>486 Charges constatées d'avance</td><td class="num">1 200</td><td></td></tr><tr><td>613 Locations</td><td></td><td class="num">1 200</td></tr></table></div>`}
+   ]}
+  ]
+},
+{ id:"p3", code:"P3", group:"Processus comptables", name:"Gestion des obligations fiscales", short:"Déclaration de taxe, impôt sur les sociétés",
+  fiches:[
+  { titre:"La déclaration de taxe sur la valeur ajoutée", freq:"Très fréquent", html:`
+    <p>Chaque mois (ou chaque trimestre pour les petites entreprises), l'entreprise calcule ce qu'elle doit à l'État :</p>
+    <div class="def"><b>Taxe à payer</b> = taxe collectée sur les ventes − taxe déductible sur les achats (biens et services) − taxe déductible sur les immobilisations − crédit de taxe du mois précédent.</div>
+    <ul><li>Si le résultat est positif : <b>taxe à décaisser</b> (compte 44551), on paie l'État.</li>
+    <li>Si le résultat est négatif : <b>crédit de taxe</b> (compte 44567), l'État nous doit, on le reporte le mois suivant.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>En mars : taxe collectée 5 000 ; taxe déductible sur achats 2 000 ; sur un ordinateur acheté 1 000. Taxe à décaisser = 5 000 − 2 000 − 1 000 = <b>2 000 euros</b>.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>44571</td><td>Taxe collectée</td><td class="num">5 000</td><td></td></tr>
+    <tr><td>44566</td><td>Taxe déductible sur autres biens et services</td><td></td><td class="num">2 000</td></tr>
+    <tr><td>44562</td><td>Taxe déductible sur immobilisations</td><td></td><td class="num">1 000</td></tr>
+    <tr><td>44551</td><td>Taxe à décaisser</td><td></td><td class="num">2 000</td></tr></table></div>
+    <p>Puis au paiement : 44551 au débit, 512 Banque au crédit.</p>`},
+  { titre:"Quand la taxe devient-elle due ? (exigibilité)", freq:"Fréquent", html:`
+    <div class="def">L'<b>exigibilité</b>, c'est le moment où la taxe collectée doit être déclarée à l'État.</div>
+    <ul><li>Pour les <b>ventes de biens</b> (marchandises) : à la <b>livraison</b>.</li>
+    <li>Pour les <b>prestations de services</b> : à l'<b>encaissement</b> (quand le client paie), sauf si l'entreprise a choisi l'option « sur les débits » (à la facturation).</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Un plombier (prestation de services) facture 1 200 euros toutes taxes comprises en mars, le client paie en mai : la taxe de 200 euros sera déclarée en <b>mai</b>.<br>Un magasin de meubles livre une table en mars, payée en mai : la taxe est déclarée en <b>mars</b>.</div>
+    <div class="tip"><span class="lab">Astuce</span>Pour les services, on utilise souvent le compte 44574 « Taxe collectée en attente » tant que le client n'a pas payé.</div>`},
+  { titre:"L'impôt sur les sociétés : calcul", freq:"Tombe très souvent", html:`
+    <p>Les sociétés (société à responsabilité limitée, société par actions simplifiée…) paient un impôt sur leur bénéfice : l'<b>impôt sur les sociétés</b>.</p>
+    <p><b>Étape 1 : passer du résultat comptable au résultat fiscal.</b></p>
+    <div class="def">Résultat fiscal = résultat comptable + <b>réintégrations</b> (charges que le fisc refuse : amendes et pénalités, l'impôt sur les sociétés lui-même, la part non déductible de l'amortissement d'une voiture de tourisme…) − <b>déductions</b> (produits non imposés).</div>
+    <p><b>Étape 2 : appliquer les taux</b> (petites et moyennes entreprises qui remplissent les conditions) :</p>
+    <ul><li><b>15 %</b> sur les 42 500 premiers euros de bénéfice ;</li><li><b>25 %</b> au-delà.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Résultat comptable 59 000 euros, dont une amende de 1 000 euros comptée en charge. Résultat fiscal = 59 000 + 1 000 = 60 000.<br>42 500 × 15 % = 6 375<br>(60 000 − 42 500) × 25 % = 17 500 × 25 % = 4 375<br><b>Impôt sur les sociétés = 10 750 euros</b></div>
+    <div class="trap"><span class="lab">Piège</span>Les conditions du taux à 15 % : chiffre d'affaires inférieur à 10 millions d'euros, capital entièrement libéré et détenu à au moins 75 % par des personnes physiques. Vérifie-les dans l'énoncé.</div>`},
+  { titre:"L'impôt sur les sociétés : acomptes et solde", freq:"Fréquent", html:`
+    <p>L'impôt ne se paie pas en une fois : on verse <b>4 acomptes</b> pendant l'année, puis un <b>solde</b>.</p>
+    <ul><li>Dates des acomptes (exercice clos le 31 décembre) : <b>15 mars, 15 juin, 15 septembre, 15 décembre</b>.</li>
+    <li>Chaque acompte = un quart de l'impôt de l'année précédente (en pratique : 25 % de l'impôt calculé sur le résultat de l'exercice précédent).</li>
+    <li>Pas d'acompte si l'impôt de l'année précédente était inférieur à 3 000 euros.</li>
+    <li><b>Solde</b> = impôt de l'année − acomptes déjà versés, payé au plus tard le 15 mai de l'année suivante (pour une clôture au 31 décembre).</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Impôt N−1 = 12 000 → acomptes de 3 000 en mars, juin, septembre et décembre N. Impôt N = 16 000 → solde = 16 000 − 12 000 = <b>4 000 euros</b> à payer le 15 mai N+1.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>695</td><td>Impôts sur les bénéfices (enregistrement de l'impôt de l'année au 31 décembre)</td><td class="num">16 000</td><td></td></tr>
+    <tr><td>444</td><td>État, impôts sur les bénéfices</td><td></td><td class="num">16 000</td></tr></table></div>`},
+  { titre:"L'autoliquidation : achats dans l'Union européenne", freq:"Fréquent", html:`
+    <p>Quand une entreprise française achète des marchandises à une entreprise d'un autre pays de l'Union européenne, le vendeur facture <b>hors taxes</b>. C'est l'acheteur français qui calcule lui-même la taxe : on parle d'<b>autoliquidation</b>.</p>
+    <p>L'acheteur enregistre la taxe <b>deux fois</b> : en taxe due (comme s'il l'avait collectée) et en taxe déductible. Les deux s'annulent : il ne paie rien de plus, mais l'opération apparaît dans sa déclaration.</p>
+    <div class="ex"><span class="lab">Exemple</span>Une entreprise française achète pour 10 000 euros de marchandises à un fournisseur allemand. Taxe française à 20 % : 2 000 euros.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>607</td><td>Achats de marchandises</td><td class="num">10 000</td><td></td></tr>
+    <tr><td>44566</td><td>Taxe déductible sur autres biens et services</td><td class="num">2 000</td><td></td></tr>
+    <tr><td>4452</td><td>Taxe due intracommunautaire</td><td></td><td class="num">2 000</td></tr>
+    <tr><td>401</td><td>Fournisseurs</td><td></td><td class="num">10 000</td></tr></table></div>
+    <div class="trap"><span class="lab">Piège</span>Le fournisseur est payé <b>10 000</b> euros, pas 12 000 : la facture n'a pas de taxe.</div>
+    <p><b>Taxe non récupérable</b> : certaines dépenses ne permettent pas de déduire la taxe, par exemple l'achat d'une voiture de tourisme. La taxe est alors ajoutée au coût d'achat.</p>`}
+  ],
+  quiz:[
+  {q:"Taxe collectée 8 000, taxe déductible 9 500. Résultat :",o:["Taxe à décaisser de 1 500","Crédit de taxe de 1 500","Rien à déclarer"],a:1,e:"La taxe déductible est plus grande : l'État doit 1 500 euros à l'entreprise, c'est un crédit de taxe (compte 44567)."},
+  {q:"Pour une prestation de services, la taxe est exigible en principe…",o:["À la commande","À la facturation","À l'encaissement"],a:2,e:"Pour les services, la taxe est due quand le client paie (sauf option sur les débits)."},
+  {q:"Résultat fiscal 30 000 euros, petite entreprise remplissant les conditions. Impôt sur les sociétés :",o:["4 500 euros","7 500 euros","6 375 euros"],a:0,e:"30 000 est sous le seuil de 42 500 : tout est taxé à 15 %. 30 000 × 15 % = 4 500."},
+  {q:"Une amende pour excès de vitesse payée par l'entreprise doit être…",o:["Déduite","Réintégrée","Ignorée"],a:1,e:"Les amendes ne sont pas déductibles fiscalement : on les ajoute au résultat comptable."},
+  {q:"Impôt de l'année précédente : 20 000 euros. Montant de chaque acompte :",o:["5 000 euros","20 000 euros","2 000 euros"],a:0,e:"Un quart : 20 000 ÷ 4 = 5 000 euros."},
+  {q:"Le compte de la taxe déductible sur un achat de véhicule utilitaire est :",o:["44566","44562","44571"],a:1,e:"Un véhicule utilitaire est une immobilisation : compte 44562."},
+  {q:"Achat de 5 000 euros hors taxes à un fournisseur espagnol. Le fournisseur est payé…",o:["6 000 euros","5 000 euros","4 000 euros"],a:1,e:"Achat intracommunautaire : la facture est hors taxes, l'acheteur autoliquide la taxe."},
+  {q:"En autoliquidation, la taxe due est enregistrée au compte…",o:["44571","4452","44551"],a:1,e:"4452 Taxe due intracommunautaire, au crédit ; elle est compensée par la taxe déductible au débit."}
+  ],
+  cas:[
+  {titre:"Société Arpège, magasin d'instruments", enonce:`<p>La société par actions simplifiée Arpège vend des instruments de musique. Taux de taxe : 20 %.</p>
+   <ul><li>Ventes de mars : 40 000 euros hors taxes.</li><li>Achats de marchandises de mars : 25 000 euros hors taxes.</li><li>Achat d'un ordinateur en mars : 2 000 euros hors taxes.</li><li>Pas de crédit de taxe le mois précédent.</li></ul>
+   <p>Pour l'année N : résultat comptable avant impôt 80 000 euros, dont une pénalité de retard de 1 000 euros. Arpège remplit les conditions du taux réduit. Acomptes versés en N : 12 000 euros au total.</p>`,
+   qs:[
+    {q:"1. Calculez la taxe à décaisser pour mars.",r:"Taxe collectée : 40 000 × 20 % = 8 000<br>Déductible sur achats : 25 000 × 20 % = 5 000<br>Déductible sur immobilisation : 2 000 × 20 % = 400<br><b>Taxe à décaisser = 8 000 − 5 000 − 400 = 2 600 euros</b>"},
+    {q:"2. Enregistrez la déclaration.",r:`<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>44571 Taxe collectée</td><td class="num">8 000</td><td></td></tr><tr><td>44566 Taxe déductible biens et services</td><td></td><td class="num">5 000</td></tr><tr><td>44562 Taxe déductible immobilisations</td><td></td><td class="num">400</td></tr><tr><td>44551 Taxe à décaisser</td><td></td><td class="num">2 600</td></tr></table></div>`},
+    {q:"3. Calculez le résultat fiscal et l'impôt sur les sociétés de N.",r:"Résultat fiscal = 80 000 + 1 000 (pénalité réintégrée) = 81 000<br>42 500 × 15 % = 6 375<br>(81 000 − 42 500) × 25 % = 38 500 × 25 % = 9 625<br><b>Impôt = 16 000 euros</b>"},
+    {q:"4. Quel est le solde à payer et à quelle date ?",r:"Solde = 16 000 − 12 000 = <b>4 000 euros</b>, à payer au plus tard le <b>15 mai N+1</b>."}
+   ]}
+  ]
+},
+{ id:"p4", code:"P4", group:"Processus comptables", name:"Gestion des relations sociales", short:"Paie, contrat de travail",
+  fiches:[
+  { titre:"Le contrat de travail", freq:"Fréquent", html:`
+    <div class="def">Le <b>contrat de travail</b> est un accord par lequel une personne (le salarié) travaille pour une autre (l'employeur), sous son autorité, en échange d'un salaire. Le lien d'autorité s'appelle le <b>lien de subordination</b>.</div>
+    <ul><li><b>Contrat à durée indéterminée</b> : la forme normale, sans date de fin.</li>
+    <li><b>Contrat à durée déterminée</b> : avec une date de fin, autorisé seulement dans des cas précis (remplacer un salarié absent, surcroît temporaire d'activité, travail saisonnier). Il doit être écrit.</li>
+    <li><b>Contrat d'apprentissage et contrat de professionnalisation</b> : des contrats en alternance, comme le tien.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Une boutique embauche un vendeur en contrat à durée déterminée de décembre à janvier pour les fêtes : c'est un surcroît temporaire d'activité, c'est autorisé. Elle ne peut pas utiliser des contrats à durée déterminée à la suite pour un poste permanent.</div>
+    <p><b>Période d'essai</b> : période au début du contrat pendant laquelle chacun peut rompre facilement. <b>Congés payés</b> : 2,5 jours ouvrables par mois travaillé, soit 30 jours ouvrables (5 semaines) par an.</p>`},
+  { titre:"Du salaire brut au net à payer", freq:"Tombe à presque tous les examens", html:`
+    <p>Un temps plein légal = <b>35 heures par semaine</b>, soit <b>151,67 heures par mois</b> (35 × 52 ÷ 12).</p>
+    <div class="def"><b>Salaire brut</b> = salaire de base + heures supplémentaires + primes + avantages.<br><b>Net avant impôt</b> = brut − cotisations salariales.<br><b>Net à payer</b> = net avant impôt − prélèvement à la source de l'impôt sur le revenu.</div>
+    <p><b>Heures supplémentaires</b> (au-delà de 35 heures par semaine) : majorées de <b>25 %</b> pour les 8 premières (de la 36e à la 43e heure), puis de <b>50 %</b> au-delà, sauf accord collectif différent.</p>
+    <div class="ex"><span class="lab">Exemple</span>Taux horaire 12 euros. Une semaine de 45 heures = 10 heures supplémentaires.<br>8 heures × 12 × 1,25 = 120<br>2 heures × 12 × 1,50 = 36<br>Total des heures supplémentaires : <b>156 euros</b></div>
+    <div class="def"><b>Cotisations salariales</b> : retenues sur le salaire du salarié (assurance vieillesse, contribution sociale généralisée…). <b>Cotisations patronales</b> : payées en plus par l'employeur, elles ne diminuent pas le salaire.</div>`},
+  { titre:"Enregistrer la paie", freq:"Très fréquent", html:`
+    <div class="ex"><span class="lab">Exemple (taux simplifiés pour s'entraîner)</span>Brut 2 000 ; cotisations salariales 440 ; prélèvement à la source 50 ; net à payer 2 000 − 440 − 50 = 1 510. Cotisations patronales 900.</div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>641</td><td>Rémunérations du personnel (le brut)</td><td class="num">2 000</td><td></td></tr>
+    <tr><td>431 / 437</td><td>Sécurité sociale et autres organismes sociaux (part salariale)</td><td></td><td class="num">440</td></tr>
+    <tr><td>4421</td><td>Prélèvement à la source</td><td></td><td class="num">50</td></tr>
+    <tr><td>421</td><td>Personnel, rémunérations dues (le net à payer)</td><td></td><td class="num">1 510</td></tr></table></div>
+    <div class="tbl"><table><tr><th>Compte</th><th>Libellé</th><th>Débit</th><th>Crédit</th></tr>
+    <tr><td>645</td><td>Charges de sécurité sociale et de prévoyance (part patronale)</td><td class="num">900</td><td></td></tr>
+    <tr><td>431 / 437</td><td>Organismes sociaux</td><td></td><td class="num">900</td></tr></table></div>
+    <div class="tip"><span class="lab">Astuce</span>Le coût total du salarié pour l'employeur = brut + cotisations patronales = 2 900 euros, alors que le salarié touche 1 510 euros.</div>`},
+  { titre:"Les congés payés : la règle la plus favorable", freq:"Fréquent", html:`
+    <p>Pendant ses congés, le salarié reçoit une <b>indemnité de congés payés</b>. On la calcule de deux façons et on lui verse <b>la plus favorable</b> :</p>
+    <ul><li><b>Règle du dixième</b> : 1/10 du salaire brut gagné pendant la période de référence (en général du 1er juin au 31 mai), pour les 30 jours ouvrables de congés.</li>
+    <li><b>Maintien de salaire</b> : ce que le salarié aurait gagné s'il avait travaillé.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Salaire brut de la période de référence : 24 000 euros. Salaire mensuel actuel : 1 950 euros. Congés pris : 12 jours ouvrables.<br>
+    Dixième : 24 000 × 1/10 = 2 400 pour 30 jours → 2 400 × 12/30 = <b>960 euros</b><br>
+    Maintien (méthode courante avec 26 jours ouvrables par mois) : 1 950 ÷ 26 × 12 = <b>900 euros</b><br>
+    On verse <b>960 euros</b>, le montant le plus favorable.</div>
+    <p><b>Arrêt maladie</b> : la Sécurité sociale verse des indemnités journalières après un délai de carence (3 jours dans le cas général). L'employeur peut compléter selon la loi et la convention collective. Les règles changent souvent : vérifie toujours les montants en vigueur.</p>`},
+  { titre:"La fin du contrat de travail : indemnités et documents", freq:"Fréquent", html:`
+    <ul><li><b>Préavis</b> : période entre l'annonce de la rupture et le départ effectif (sa durée dépend de l'ancienneté et de la convention collective).</li>
+    <li><b>Indemnité légale de licenciement</b> (sauf faute grave, à partir de 8 mois d'ancienneté) : 1/4 de mois de salaire par année d'ancienneté jusqu'à 10 ans, puis 1/3 de mois par année au-delà.</li>
+    <li><b>Indemnité compensatrice de congés payés</b> : pour les jours de congés acquis et non pris.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Salariée licenciée après 6 ans, salaire de référence 2 000 euros. Indemnité légale = 6 × 2 000 × 1/4 = <b>3 000 euros</b>.</div>
+    <p><b>Documents à remettre au départ</b> : le <b>certificat de travail</b>, l'<b>attestation destinée à France Travail</b> (pour les allocations chômage) et le <b>reçu pour solde de tout compte</b> (la liste des sommes versées).</p>`}
+  ],
+  quiz:[
+  {q:"Nombre d'heures mensuelles pour un temps plein de 35 heures :",o:["140 heures","151,67 heures","160 heures"],a:1,e:"35 × 52 semaines ÷ 12 mois = 151,67 heures."},
+  {q:"La 37e heure de la semaine est majorée de :",o:["10 %","25 %","50 %"],a:1,e:"De la 36e à la 43e heure : majoration de 25 %."},
+  {q:"Le salaire brut s'enregistre au compte :",o:["421","641","645"],a:1,e:"641 Rémunérations du personnel, au débit."},
+  {q:"Les cotisations patronales…",o:["Sont retirées du salaire brut","S'ajoutent au coût pour l'employeur","Sont payées par le salarié"],a:1,e:"Elles sont payées par l'employeur en plus du brut, elles ne diminuent pas le salaire."},
+  {q:"Combien de jours ouvrables de congés payés pour un an de travail ?",o:["25","30","35"],a:1,e:"2,5 jours par mois × 12 = 30 jours ouvrables, soit 5 semaines."},
+  {q:"Un contrat à durée déterminée peut servir à…",o:["Pourvoir un poste permanent","Remplacer un salarié en congé maternité","Tester un salarié sans période d'essai"],a:1,e:"Le remplacement d'un salarié absent fait partie des cas autorisés."},
+  {q:"Pour l'indemnité de congés payés, on retient…",o:["Toujours la règle du dixième","Toujours le maintien de salaire","Le montant le plus favorable au salarié"],a:2,e:"On calcule les deux méthodes et on verse la plus favorable."},
+  {q:"Indemnité légale de licenciement, 4 ans d'ancienneté, salaire de référence 2 400 euros :",o:["2 400 euros","3 200 euros","9 600 euros"],a:0,e:"4 × 2 400 × 1/4 = 2 400 euros."},
+  {q:"Quel document permet au salarié de toucher ses allocations chômage ?",o:["Le certificat de travail","L'attestation destinée à France Travail","Le bulletin de paie"],a:1,e:"L'attestation est transmise à France Travail pour ouvrir les droits."}
+  ],
+  cas:[
+  {titre:"Paie de Karim, préparateur de commandes", enonce:`<p>Karim est payé 13 euros de l'heure, 151,67 heures par mois. En avril, il a fait 6 heures supplémentaires, toutes majorées à 25 %.</p>
+   <p>Pour l'exercice, on utilise des taux simplifiés : cotisations salariales 22 % du brut ; cotisations patronales 40 % du brut. Le prélèvement à la source est de 33 euros.</p>`,
+   qs:[
+    {q:"1. Calculez le salaire brut.",r:"Base : 151,67 × 13 = 1 971,71<br>Heures supplémentaires : 6 × 13 × 1,25 = 97,50<br><b>Brut = 2 069,21 euros</b>"},
+    {q:"2. Calculez le net à payer.",r:"Cotisations salariales : 2 069,21 × 22 % = 455,23<br>Net avant impôt : 2 069,21 − 455,23 = 1 613,98<br><b>Net à payer = 1 613,98 − 33 = 1 580,98 euros</b>"},
+    {q:"3. Enregistrez la paie et les cotisations patronales.",r:`Cotisations patronales : 2 069,21 × 40 % = 827,68<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>641 Rémunérations</td><td class="num">2 069,21</td><td></td></tr><tr><td>431/437 Organismes sociaux</td><td></td><td class="num">455,23</td></tr><tr><td>4421 Prélèvement à la source</td><td></td><td class="num">33,00</td></tr><tr><td>421 Rémunérations dues</td><td></td><td class="num">1 580,98</td></tr><tr><td>645 Charges sociales</td><td class="num">827,68</td><td></td></tr><tr><td>431/437 Organismes sociaux</td><td></td><td class="num">827,68</td></tr></table></div>`},
+    {q:"4. Quel est le coût total de Karim pour l'employeur ce mois-ci ?",r:"2 069,21 + 827,68 = <b>2 896,89 euros</b>"}
+   ]}
+  ]
+},
+{ id:"p5", code:"P5", group:"Processus comptables", name:"Analyse et prévision de l'activité", short:"Coûts, seuil de rentabilité, budgets",
+  fiches:[
+  { titre:"Charges fixes et charges variables", freq:"Base du processus 5", html:`
+    <div class="def"><b>Charge variable</b> : augmente quand l'activité augmente (matières premières, marchandises, commissions des vendeurs).<br><b>Charge fixe</b> : reste la même quel que soit le volume vendu, du moins à court terme (loyer, assurance, salaires des administratifs, amortissements).</div>
+    <div class="ex"><span class="lab">Exemple</span>Une pizzeria : la farine et la mozzarella sont variables (plus de pizzas = plus d'ingrédients). Le loyer du local est fixe (il est le même avec 10 ou 300 pizzas par jour).</div>`},
+  { titre:"Marge sur coût variable et seuil de rentabilité", freq:"Tombe très souvent", html:`
+    <div class="def"><b>Marge sur coût variable</b> = chiffre d'affaires − charges variables.<br><b>Taux de marge sur coût variable</b> = marge sur coût variable ÷ chiffre d'affaires.<br><b>Résultat</b> = marge sur coût variable − charges fixes.</div>
+    <div class="def"><b>Seuil de rentabilité</b> = le chiffre d'affaires minimum pour ne faire ni bénéfice ni perte.<br>Seuil = charges fixes ÷ taux de marge sur coût variable.</div>
+    <div class="def"><b>Point mort</b> = la date à laquelle le seuil est atteint.<br>Point mort (en jours) = seuil ÷ chiffre d'affaires × 360.</div>
+    <div class="ex"><span class="lab">Exemple</span>Chiffre d'affaires 200 000 ; charges variables 120 000 ; charges fixes 60 000.<br>Marge sur coût variable = 80 000 ; taux = 80 000 ÷ 200 000 = 40 %<br>Seuil = 60 000 ÷ 0,40 = <b>150 000 euros</b><br>Point mort = 150 000 ÷ 200 000 × 360 = 270 jours = 9 mois de 30 jours → <b>le 30 septembre</b><br>Résultat = 80 000 − 60 000 = 20 000 euros</div>
+    <div class="tip"><span class="lab">Astuce</span>Vérifie toujours : au seuil, marge sur coût variable = 150 000 × 40 % = 60 000 = charges fixes. Le résultat est bien nul.</div>`},
+  { titre:"Le coût de revient complet", freq:"Fréquent", html:`
+    <p>On calcule le coût d'un produit étape par étape, comme on suit son trajet dans l'entreprise :</p>
+    <ul><li><b>Coût d'achat</b> = prix d'achat des matières + frais d'approvisionnement (transport, réception).</li>
+    <li><b>Coût de production</b> = matières consommées (au coût d'achat) + main-d'œuvre de l'atelier + charges de l'atelier.</li>
+    <li><b>Coût de revient</b> = coût de production des produits vendus + coût de distribution (commerciaux, livraison).</li>
+    <li><b>Résultat analytique</b> = chiffre d'affaires − coût de revient.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Une table : bois 40 euros + transport 5 → coût d'achat 45. Main-d'œuvre 30 + atelier 15 → coût de production 90. Distribution 10 → coût de revient 100. Vendue 130 → résultat <b>+30 euros</b> par table.</div>`},
+  { titre:"Le budget de trésorerie", freq:"Fréquent", html:`
+    <div class="def">Le <b>budget de trésorerie</b> prévoit, mois par mois, les entrées et sorties d'argent sur le compte bancaire, pour repérer à l'avance les mois où l'argent manquera.</div>
+    <ul><li><b>Encaissements</b> : ventes encaissées (attention aux délais de paiement des clients, toutes taxes comprises), emprunt reçu, apport en capital.</li>
+    <li><b>Décaissements</b> : achats payés (toutes taxes comprises), salaires, loyer, taxe à décaisser, remboursement d'emprunt.</li>
+    <li><b>Trésorerie fin de mois</b> = trésorerie début de mois + encaissements − décaissements.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Début janvier : 5 000 euros en banque. Encaissements de janvier : 12 000. Décaissements : 18 000. Fin janvier : 5 000 + 12 000 − 18 000 = <b>−1 000 euros</b>. Il faut prévoir une solution (découvert autorisé, négocier un délai fournisseur).</div>
+    <div class="trap"><span class="lab">Piège</span>Les amortissements et les dépréciations n'apparaissent <b>jamais</b> dans un budget de trésorerie : ce ne sont pas des sorties d'argent.</div>`},
+  { titre:"Les écarts sur charges directes", freq:"Tombe souvent", html:`
+    <p>On compare ce qui était <b>prévu</b> (le budget) et ce qui s'est <b>réellement</b> passé. La différence s'appelle un <b>écart</b>.</p>
+    <div class="def">Écart global = coût réel − coût prévu (pour la production réelle)<br>Écart sur quantité = (quantité réelle − quantité prévue) × prix prévu<br>Écart sur prix = (prix réel − prix prévu) × quantité réelle<br>Écart global = écart sur quantité + écart sur prix</div>
+    <div class="ex"><span class="lab">Exemple</span>Prévu : 100 kilos de farine à 5 euros = 500 euros. Réel : 110 kilos à 4,80 euros = 528 euros.<br>
+    Écart global = 528 − 500 = <b>+28 défavorable</b> (on a dépensé plus)<br>
+    Écart sur quantité = (110 − 100) × 5 = <b>+50 défavorable</b> (trop de farine utilisée : gaspillage ?)<br>
+    Écart sur prix = (4,80 − 5) × 110 = <b>−22 favorable</b> (le fournisseur a été moins cher)<br>
+    Vérification : 50 − 22 = 28.</div>
+    <div class="tip"><span class="lab">Astuce</span>Pour un coût, un écart <b>positif</b> est <b>défavorable</b>. Et il faut toujours <b>analyser</b> : qui est responsable de l'écart (l'atelier pour la quantité, le service achats pour le prix) ?</div>`},
+  { titre:"Les centres d'analyse et le coût de revient", freq:"Fréquent", html:`
+    <p>Certaines charges concernent directement un produit (<b>charges directes</b> : la matière d'une table). D'autres concernent plusieurs produits (<b>charges indirectes</b> : l'électricité de l'atelier, le salaire du chef d'atelier).</p>
+    <p>Les charges indirectes sont réparties dans des <b>centres d'analyse</b> (approvisionnement, atelier, distribution), dans un tableau de répartition. Chaque centre a une <b>unité d'œuvre</b>, qui sert à imputer son coût aux produits.</p>
+    <div class="def">Coût de l'unité d'œuvre = total des charges du centre ÷ nombre d'unités d'œuvre</div>
+    <div class="ex"><span class="lab">Exemple</span>Le centre « Atelier » coûte 12 000 euros dans le mois et l'unité d'œuvre est l'heure-machine. 400 heures-machine ont été utilisées → 12 000 ÷ 400 = 30 euros l'heure.<br>Une commande qui a demandé 15 heures-machine supporte donc 15 × 30 = <b>450 euros</b> de charges de l'atelier.</div>`}
+  ],
+  quiz:[
+  {q:"Le loyer d'un entrepôt est une charge…",o:["Variable","Fixe"],a:1,e:"Il ne dépend pas du volume vendu : charge fixe."},
+  {q:"Chiffre d'affaires 100 000, charges variables 70 000. Taux de marge sur coût variable :",o:["70 %","30 %","43 %"],a:1,e:"Marge = 30 000 ; 30 000 ÷ 100 000 = 30 %."},
+  {q:"Charges fixes 45 000, taux de marge sur coût variable 30 %. Seuil de rentabilité :",o:["150 000","13 500","58 500"],a:0,e:"45 000 ÷ 0,30 = 150 000 euros."},
+  {q:"Seuil 120 000, chiffre d'affaires annuel 240 000 (régulier). Le point mort est atteint…",o:["Fin mars","Fin juin","Fin septembre"],a:1,e:"120 000 ÷ 240 000 × 360 = 180 jours = 6 mois → 30 juin."},
+  {q:"Quel élément n'apparaît pas dans un budget de trésorerie ?",o:["Les salaires","La dotation aux amortissements","Le remboursement d'emprunt"],a:1,e:"Un amortissement est une charge calculée, sans sortie d'argent."},
+  {q:"Coût de production des produits vendus 80, coût de distribution 12, prix de vente 100. Résultat unitaire :",o:["+20","+8","−12"],a:1,e:"Coût de revient = 92 ; 100 − 92 = 8 euros."},
+  {q:"Prévu 200 heures à 20 euros, réel 210 heures à 19 euros. Écart sur quantité :",o:["+200 défavorable","−210 favorable","+10 défavorable"],a:0,e:"(210 − 200) × 20 = +200 : on a utilisé plus d'heures que prévu."},
+  {q:"Même exemple : écart sur prix :",o:["+210 défavorable","−210 favorable","−200 favorable"],a:1,e:"(19 − 20) × 210 = −210 : l'heure a coûté moins cher que prévu."}
+  ],
+  cas:[
+  {titre:"Entreprise Solaris, lampes solaires", enonce:`<p>Solaris vend 5 000 lampes par an à 60 euros l'unité. Le coût variable est de 36 euros par lampe. Les charges fixes s'élèvent à 96 000 euros par an. Les ventes sont régulières sur l'année.</p>`,
+   qs:[
+    {q:"1. Calculez le chiffre d'affaires, la marge sur coût variable et son taux.",r:"Chiffre d'affaires = 5 000 × 60 = 300 000<br>Charges variables = 5 000 × 36 = 180 000<br>Marge sur coût variable = <b>120 000</b> ; taux = 120 000 ÷ 300 000 = <b>40 %</b>"},
+    {q:"2. Calculez le résultat.",r:"120 000 − 96 000 = <b>24 000 euros</b> de bénéfice."},
+    {q:"3. Calculez le seuil de rentabilité en euros et en nombre de lampes.",r:"Seuil = 96 000 ÷ 0,40 = <b>240 000 euros</b><br>En quantité : 240 000 ÷ 60 = <b>4 000 lampes</b>"},
+    {q:"4. À quelle date le point mort est-il atteint ?",r:"240 000 ÷ 300 000 × 360 = 288 jours = 9 mois (270 jours) + 18 jours → <b>le 18 octobre</b>."}
+   ]},
+  {titre:"Écarts : biscuiterie Bonnefoy", enonce:`<p>Pour fabriquer 1 000 paquets de biscuits, la biscuiterie Bonnefoy avait prévu 400 kilos de beurre à 8 euros le kilo. En réalité, pour ces 1 000 paquets, elle a utilisé 380 kilos de beurre payés 9 euros le kilo.</p>`,
+   qs:[
+    {q:"1. Calculez le coût prévu, le coût réel et l'écart global.",r:"Prévu : 400 × 8 = 3 200. Réel : 380 × 9 = 3 420.<br><b>Écart global = +220, défavorable.</b>"},
+    {q:"2. Décomposez l'écart.",r:"Sur quantité : (380 − 400) × 8 = <b>−160, favorable</b>.<br>Sur prix : (9 − 8) × 380 = <b>+380, défavorable</b>.<br>Vérification : −160 + 380 = 220."},
+    {q:"3. Commentez.",r:"L'atelier a bien travaillé : il a consommé moins de beurre que prévu. Le problème vient du <b>prix</b> du beurre, plus cher d'un euro par kilo. Le service achats doit expliquer cette hausse (hausse du marché ? changement de fournisseur ?) et chercher des solutions (contrat à prix fixe, autre fournisseur)."}
+   ]}
+  ]
+},
+{ id:"p7", code:"P7", group:"Processus comptables", name:"Fiabilisation de l'information et système d'information comptable", short:"Veille, processus, base de données",
+  fiches:[
+  { titre:"La veille informationnelle", freq:"Fréquent, et utile pour ton dossier", html:`
+    <div class="def">La <b>veille informationnelle</b> consiste à surveiller de façon organisée et régulière les informations d'un domaine (réglementation, concurrents, technologies) pour ne rien rater d'important.</div>
+    <p>Les étapes : <b>définir le besoin</b> (quoi surveiller), <b>choisir les sources</b>, <b>collecter</b>, <b>trier et vérifier</b>, <b>diffuser</b> à ceux qui en ont besoin.</p>
+    <p><b>Outils</b> : alertes par courriel (Google Alertes), flux de syndication (flux RSS) lus avec un agrégateur comme Feedly, abonnements à des lettres d'information, réseaux sociaux professionnels.</p>
+    <p><b>Vérifier une source</b> : qui est l'auteur ? quelle est la date ? le site est-il officiel (service-public.fr, impots.gouv.fr, urssaf.fr) ? l'information est-elle confirmée ailleurs ?</p>
+    <div class="ex"><span class="lab">Exemple</span>Un cabinet comptable surveille les changements de taux de cotisations sociales : il crée une alerte « taux cotisations 2027 », s'abonne à la lettre d'information de l'Urssaf et fait une note mensuelle à l'équipe.</div>`},
+  { titre:"Les processus et le diagramme événement-résultat", freq:"Fréquent", html:`
+    <div class="def">Un <b>processus</b> est une suite d'activités qui, à partir d'un événement de départ, produit un résultat utile (exemple : de la commande du client jusqu'à l'encaissement).</div>
+    <p>Le <b>diagramme événement-résultat</b> représente un processus :</p>
+    <ul><li><b>Événement</b> : ce qui déclenche (la réception d'une commande).</li>
+    <li><b>Activité</b> (ou opération) : ce qu'on fait, avec <b>qui</b> la fait (l'acteur).</li>
+    <li><b>Règle d'émission</b> : la condition qui décide du résultat (« si le stock est suffisant… sinon… »).</li>
+    <li><b>Résultat</b> : ce que produit l'activité (un bon de livraison, une facture), qui peut devenir l'événement de l'activité suivante.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Événement : « Demande d'inscription reçue » → Activité : « Vérifier le dossier » (acteur : secrétariat) → Règle : dossier complet ? → Résultat si oui : « Inscription validée » ; si non : « Courriel de relance envoyé ».</div>
+    <div class="tip"><span class="lab">Astuce</span>Chaque activité doit avoir au moins un événement en entrée et au moins un résultat en sortie. Un résultat est rédigé avec un participe passé (« facture émise »).</div>`},
+  { titre:"Les bases de données relationnelles", freq:"Très fréquent", html:`
+    <div class="def">Une <b>base de données relationnelle</b> range l'information dans des <b>tables</b> (comme des tableaux). Chaque ligne est un enregistrement, chaque colonne un champ.</div>
+    <ul><li><b>Clé primaire</b> : le champ qui identifie chaque ligne de façon unique (numéro de client). On la souligne dans le schéma.</li>
+    <li><b>Clé étrangère</b> : un champ d'une table qui reprend la clé primaire d'une autre table, pour les relier. On la note avec un dièse (#).</li></ul>
+    <div class="ex"><span class="lab">Exemple de schéma</span>CLIENT (<u>numClient</u>, nom, ville)<br>FACTURE (<u>numFacture</u>, dateFacture, montant, #numClient)<br>Le champ #numClient dans FACTURE permet de savoir à quel client appartient chaque facture.</div>`},
+  { titre:"Les requêtes en langage SQL", freq:"Très fréquent", html:`
+    <p>Le langage <b>SQL</b> (de l'anglais Structured Query Language, langage de requête structuré) sert à interroger une base de données.</p>
+    <div class="tbl"><table><tr><th>Mot clé</th><th>Rôle</th></tr>
+    <tr><td><code>SELECT</code></td><td>Les colonnes à afficher</td></tr>
+    <tr><td><code>FROM</code></td><td>Les tables utilisées</td></tr>
+    <tr><td><code>WHERE</code></td><td>Les conditions (et les jointures entre tables)</td></tr>
+    <tr><td><code>ORDER BY</code></td><td>Le tri (ASC croissant, DESC décroissant)</td></tr>
+    <tr><td><code>COUNT, SUM, AVG</code></td><td>Compter, additionner, faire la moyenne</td></tr>
+    <tr><td><code>GROUP BY</code></td><td>Regrouper pour calculer par catégorie</td></tr></table></div>
+    <div class="ex"><span class="lab">Exemple</span>Liste des clients de Lyon, par ordre alphabétique :<br><code>SELECT nom FROM CLIENT WHERE ville = 'Lyon' ORDER BY nom ASC;</code><br><br>Total facturé par client (jointure) :<br><code>SELECT CLIENT.nom, SUM(montant) FROM CLIENT, FACTURE WHERE CLIENT.numClient = FACTURE.numClient GROUP BY CLIENT.nom;</code></div>
+    <div class="trap"><span class="lab">Piège</span>Dès qu'une requête utilise deux tables, il faut écrire la <b>jointure</b> dans le WHERE (clé primaire = clé étrangère), sinon le résultat est faux.</div>`},
+  { titre:"Sécurité et protection des données personnelles", freq:"Fréquent", html:`
+    <div class="def">Le <b>règlement général sur la protection des données</b> (texte européen de 2018) encadre l'utilisation des données personnelles (nom, adresse, numéro de téléphone…).</div>
+    <ul><li>Ne collecter que les données <b>nécessaires</b>.</li><li>Informer les personnes et respecter leurs droits : accès, rectification, effacement.</li><li>Limiter la <b>durée de conservation</b>.</li><li>Protéger les données : mots de passe solides, sauvegardes régulières, accès réservés.</li></ul>
+    <p>Le <b>progiciel de gestion intégré</b> (comme EBP ou Sage) regroupe dans un seul logiciel la comptabilité, la paie, les ventes, avec une base de données unique : une information saisie une fois est disponible partout.</p>
+    <div class="ex"><span class="lab">Exemple</span>Un centre social qui garde les fiches d'inscription des familles doit les ranger dans un fichier protégé, n'y donner accès qu'au personnel concerné, et supprimer les fiches des familles parties depuis longtemps.</div>`}
+  ],
+  quiz:[
+  {q:"Le champ qui identifie chaque ligne d'une table de façon unique s'appelle…",o:["La clé étrangère","La clé primaire","L'index"],a:1,e:"La clé primaire, soulignée dans le schéma relationnel."},
+  {q:"Dans une requête SQL, quel mot clé filtre les lignes ?",o:["SELECT","WHERE","ORDER BY"],a:1,e:"WHERE contient les conditions (et les jointures)."},
+  {q:"Quel outil permet de recevoir automatiquement les nouveaux articles d'un site ?",o:["Un flux de syndication (flux RSS)","Un tableur","Un progiciel de gestion intégré"],a:0,e:"Le flux RSS, lu avec un agrégateur, signale chaque nouvelle publication."},
+  {q:"Dans un diagramme événement-résultat, « Si stock suffisant » est…",o:["Un événement","Une règle d'émission","Un acteur"],a:1,e:"C'est la condition qui détermine quel résultat est produit."},
+  {q:"Que fait la requête : SELECT COUNT(*) FROM CLIENT WHERE ville = 'Paris'; ?",o:["Elle affiche la liste des clients parisiens","Elle compte les clients parisiens","Elle supprime les clients parisiens"],a:1,e:"COUNT(*) compte les lignes qui respectent la condition."},
+  {q:"Le règlement général sur la protection des données impose notamment…",o:["De garder les données le plus longtemps possible","De limiter la durée de conservation","De collecter un maximum de données"],a:1,e:"Les données ne doivent être conservées que le temps nécessaire."}
+  ],
+  cas:[
+  {titre:"Centre socioculturel Les Tilleuls, base des adhérents", enonce:`<p>Le centre Les Tilleuls gère ses adhérents et ses activités avec la base suivante :</p>
+   <p>ACTIVITE (<u>codeActivite</u>, libelle, tarif)<br>ADHERENT (<u>numAdherent</u>, nom, prenom, ville, #codeActivite)</p>`,
+   qs:[
+    {q:"1. Quelle est la clé primaire de la table ADHERENT ? Quelle est la clé étrangère ?",r:"Clé primaire : <b>numAdherent</b>. Clé étrangère : <b>codeActivite</b>, qui fait référence à la clé primaire de la table ACTIVITE."},
+    {q:"2. Écrivez la requête qui affiche le nom et le prénom des adhérents habitant Villeurbanne.",r:"<code>SELECT nom, prenom FROM ADHERENT WHERE ville = 'Villeurbanne';</code>"},
+    {q:"3. Écrivez la requête qui affiche le nom des adhérents inscrits à l'activité « Couture ».",r:"<code>SELECT nom FROM ADHERENT, ACTIVITE WHERE ADHERENT.codeActivite = ACTIVITE.codeActivite AND libelle = 'Couture';</code><br>La jointure relie les deux tables."},
+    {q:"4. Écrivez la requête qui compte le nombre d'adhérents par activité.",r:"<code>SELECT libelle, COUNT(numAdherent) FROM ADHERENT, ACTIVITE WHERE ADHERENT.codeActivite = ACTIVITE.codeActivite GROUP BY libelle;</code>"}
+   ]}
+  ]
+},
+{ id:"maths", code:"Maths", group:"Matières générales", name:"Mathématiques appliquées", short:"Pourcentages, suites, statistiques",
+  fiches:[
+  { titre:"Pourcentages et coefficient multiplicateur", freq:"Partout, y compris en comptabilité", html:`
+    <div class="def">Augmenter de t % revient à multiplier par <b>(1 + t/100)</b>. Baisser de t % revient à multiplier par <b>(1 − t/100)</b>. Ce nombre s'appelle le <b>coefficient multiplicateur</b>.</div>
+    <div class="ex"><span class="lab">Exemple</span>+8 % → × 1,08. −15 % → × 0,85.<br>Un prix de 50 euros augmenté de 8 % : 50 × 1,08 = 54 euros.</div>
+    <p><b>Taux d'évolution</b> entre une valeur de départ et une valeur d'arrivée :</p>
+    <div class="def">Taux = (arrivée − départ) ÷ départ × 100</div>
+    <div class="ex"><span class="lab">Exemple</span>Chiffre d'affaires passé de 80 000 à 92 000 : (92 000 − 80 000) ÷ 80 000 × 100 = <b>+15 %</b>.</div>
+    <div class="def"><b>Évolutions successives</b> : on <b>multiplie</b> les coefficients, on n'additionne pas les pourcentages.</div>
+    <div class="ex"><span class="lab">Exemple</span>+20 % puis −20 % : 1,20 × 0,80 = 0,96 → <b>−4 %</b> au total, et non 0 %.</div>
+    <div class="tip"><span class="lab">Taux réciproque</span>Pour annuler une hausse de 25 %, il faut une baisse de : 1 ÷ 1,25 = 0,80 → <b>−20 %</b>.</div>`},
+  { titre:"Suites et intérêts", freq:"Très fréquent", html:`
+    <div class="def"><b>Suite arithmétique</b> : on ajoute toujours le même nombre r (la raison). u<sub>n</sub> = u<sub>0</sub> + n × r.</div>
+    <div class="def"><b>Suite géométrique</b> : on multiplie toujours par le même nombre q (la raison). u<sub>n</sub> = u<sub>0</sub> × q<sup>n</sup>.</div>
+    <p>En finance :</p>
+    <ul><li><b>Intérêts simples</b> (suite arithmétique) : les intérêts sont calculés chaque année sur le capital de départ seulement. Valeur acquise = C × (1 + t × n).</li>
+    <li><b>Intérêts composés</b> (suite géométrique) : les intérêts s'ajoutent au capital et produisent eux-mêmes des intérêts. Valeur acquise = C × (1 + t)<sup>n</sup>.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>1 000 euros placés à 3 % pendant 5 ans.<br>Intérêts simples : 1 000 × (1 + 0,03 × 5) = <b>1 150 euros</b><br>Intérêts composés : 1 000 × 1,03<sup>5</sup> = <b>1 159,27 euros</b></div>`},
+  { titre:"Statistiques à deux variables", freq:"Fréquent", html:`
+    <p>On étudie le lien entre deux séries (par exemple les dépenses de publicité x et le chiffre d'affaires y) pour faire des <b>prévisions</b>.</p>
+    <ul><li>On place les points dans un repère : le <b>nuage de points</b>.</li>
+    <li>Si les points sont à peu près alignés, on cherche une droite d'équation <b>y = ax + b</b> avec la calculatrice (méthode des moindres carrés).</li>
+    <li>Le <b>coefficient de corrélation</b> r est compris entre −1 et 1. Plus il est proche de 1 ou de −1, plus l'ajustement est fiable.</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>La calculatrice donne y = 2,5x + 40 (en milliers d'euros), avec r = 0,98. Si l'entreprise dépense 12 000 euros de publicité (x = 12), le chiffre d'affaires prévu est 2,5 × 12 + 40 = <b>70 milliers d'euros</b>, soit 70 000 euros.</div>
+    <div class="tip"><span class="lab">Astuce</span>Entraîne-toi à faire les calculs de régression sur <b>ta</b> calculatrice (menu statistiques), les touches changent selon le modèle.</div>`},
+  { titre:"Probabilités et loi binomiale", freq:"Fréquent", html:`
+    <div class="def">Une <b>probabilité</b> est un nombre entre 0 (impossible) et 1 (certain). P(A) = nombre de cas favorables ÷ nombre de cas possibles (quand tous les cas ont la même chance).</div>
+    <div class="def"><b>Loi binomiale</b> : on répète n fois la même épreuve, de façon indépendante, avec deux issues (succès de probabilité p, échec de probabilité 1 − p). X compte le nombre de succès.<br>P(X = k) = (nombre de combinaisons de k parmi n) × p<sup>k</sup> × (1 − p)<sup>n−k</sup><br>Espérance (moyenne attendue) = n × p.</div>
+    <div class="ex"><span class="lab">Exemple</span>20 % des factures contiennent une erreur. On contrôle 3 factures. Probabilité qu'une seule ait une erreur :<br>3 × 0,2 × 0,8² = 3 × 0,2 × 0,64 = <b>0,384</b><br>En moyenne, sur 3 factures : 3 × 0,2 = 0,6 facture avec une erreur.</div>`}
+  ],
+  quiz:[
+  {q:"Une hausse de 12 % correspond au coefficient multiplicateur :",o:["0,12","1,12","0,88"],a:1,e:"1 + 12/100 = 1,12."},
+  {q:"Un prix baisse de 10 % puis de 10 %. Baisse totale :",o:["20 %","19 %","21 %"],a:1,e:"0,9 × 0,9 = 0,81 → −19 %."},
+  {q:"Les ventes passent de 40 000 à 50 000. Taux d'évolution :",o:["+20 %","+25 %","+10 %"],a:1,e:"(50 000 − 40 000) ÷ 40 000 = 0,25 → +25 %."},
+  {q:"2 000 euros à intérêts composés à 2 % pendant 4 ans. Valeur acquise (arrondie) :",o:["2 160 euros","2 164,86 euros","2 080 euros"],a:1,e:"2 000 × 1,02⁴ = 2 000 × 1,08243… ≈ 2 164,86. (2 160 correspondrait aux intérêts simples.)"},
+  {q:"Coefficient de corrélation de −0,97. L'ajustement affine est…",o:["Mauvais","Très bon","Impossible"],a:1,e:"Proche de −1 : les points sont presque alignés sur une droite qui descend."},
+  {q:"Loi binomiale avec n = 50 et p = 0,1. Espérance :",o:["5","0,1","50"],a:0,e:"n × p = 50 × 0,1 = 5."}
+  ],
+  cas:[
+  {titre:"Évolution du chiffre d'affaires de la société Kalia", enonce:`<p>Le chiffre d'affaires de la société Kalia était de 150 000 euros en 2024. Il a augmenté de 8 % en 2025, puis baissé de 5 % en 2026. Par ailleurs, la société place 10 000 euros de trésorerie à 3 % par an, à intérêts composés.</p>`,
+   qs:[
+    {q:"1. Calculez le chiffre d'affaires de 2025 et de 2026.",r:"2025 : 150 000 × 1,08 = <b>162 000 euros</b><br>2026 : 162 000 × 0,95 = <b>153 900 euros</b>"},
+    {q:"2. Quel est le taux d'évolution global entre 2024 et 2026 ?",r:"1,08 × 0,95 = 1,026 → <b>+2,6 %</b>. Vérification : (153 900 − 150 000) ÷ 150 000 = 0,026."},
+    {q:"3. Quel taux de baisse ramènerait le chiffre d'affaires de 2026 à son niveau de 2024 ?",r:"Il faut que 153 900 × coefficient = 150 000 → coefficient = 150 000 ÷ 153 900 ≈ 0,9747 → une baisse d'environ <b>2,53 %</b>."},
+    {q:"4. Quelle sera la valeur du placement au bout de 3 ans ?",r:"10 000 × 1,03³ = 10 000 × 1,092727 = <b>10 927,27 euros</b>"}
+   ]}
+  ]
+},
+{ id:"cg", code:"Culture", group:"Matières générales", name:"Culture générale et expression", short:"Thème 2027 : « Le vrai du faux »",
+  fiches:[
+  { titre:"L'épreuve de la session 2027", freq:"À connaître avant tout", html:`
+    <p>L'épreuve écrite dure <b>3 heures</b>. Elle porte sur un seul thème, fixé par le ministère pour la session 2027 : <b>« Le vrai du faux »</b>.</p>
+    <div class="tbl"><table><tr><th>Partie</th><th>Ce qu'on te donne</th><th>Ce que tu fais</th><th>Points</th></tr>
+    <tr><td>1. Questions sur le corpus</td><td>2 ou 3 documents de types différents (texte littéraire, article, image, tableau de chiffres), datés et présentés</td><td>Tu réponds à 2 à 4 questions qui demandent de <b>comparer</b> et d'<b>interpréter</b> les documents</td><td class="num">10</td></tr>
+    <tr><td>2. Essai</td><td>Deux sujets au choix, liés au thème</td><td>Tu rédiges une réponse <b>argumentée et nuancée</b>, avec le corpus, tes lectures et tes connaissances</td><td class="num">10</td></tr></table></div>
+    <div class="trap"><span class="lab">Attention</span>Les anciennes annales (synthèse de documents, écriture personnelle, 4 heures) ne correspondent plus au format. Tu peux t'en servir pour les idées, pas pour la méthode.</div>
+    <div class="tip"><span class="lab">Gestion du temps conseillée</span>15 minutes de lecture du corpus, 1 heure 15 pour les questions, 1 heure 15 pour l'essai, 15 minutes de relecture.</div>`},
+  { titre:"Comprendre le thème « Le vrai du faux »", freq:"Le cœur de l'épreuve", html:`
+    <p>Le thème ne demande pas seulement « comment reconnaître le faux ». Il pose une question plus fine : <b>le vrai et le faux sont-ils toujours opposés ?</b> Le faux peut tromper, mais il peut aussi, parfois, faire comprendre une vérité.</p>
+    <p><b>Trois grands axes à retenir :</b></p>
+    <ul><li><b>Le faux qui trompe</b> : mensonge, manipulation, propagande, rumeur, fausses informations, images truquées par l'intelligence artificielle.</li>
+    <li><b>Le faux qui révèle</b> : la fiction (roman, film, théâtre) invente des histoires « fausses » qui disent pourtant des choses vraies sur les êtres humains et la société.</li>
+    <li><b>Démêler le vrai du faux</b> : l'esprit critique, la vérification des sources, l'éducation aux médias, le rôle du journalisme et de la science.</li></ul>
+    <div class="ex"><span class="lab">Exemple pour l'axe 2</span>Dans l'Antiquité, on raconte que le peintre Zeuxis avait peint des raisins si ressemblants que des oiseaux venaient les picorer. Le tableau est « faux » (ce ne sont pas de vrais raisins) mais il prouve le talent de l'artiste. Louis Aragon a résumé cette idée par une formule devenue célèbre : le <b>« mentir-vrai »</b> de l'écrivain.</div>
+    <div class="ex"><span class="lab">Exemple pour l'axe 1</span>En 2023, une image du pape François en grande doudoune blanche a fait le tour des réseaux sociaux. Elle avait été fabriquée par une intelligence artificielle, et des millions de personnes l'ont crue vraie.</div>`},
+  { titre:"Le vocabulaire du thème", freq:"Utile dans chaque copie", html:`
+    <div class="tbl"><table><tr><th>Mot</th><th>Définition simple</th></tr>
+    <tr><td>Mensonge</td><td>Dire volontairement quelque chose de faux pour tromper.</td></tr>
+    <tr><td>Erreur</td><td>Dire quelque chose de faux <b>sans le savoir</b>. Ce n'est pas un mensonge.</td></tr>
+    <tr><td>Illusion</td><td>Une perception trompeuse : on croit voir ou comprendre ce qui n'est pas.</td></tr>
+    <tr><td>Fiction</td><td>Une histoire inventée, présentée comme telle. Le lecteur sait que c'est inventé : il n'est pas trompé.</td></tr>
+    <tr><td>Désinformation</td><td>Diffuser volontairement une fausse information pour manipuler.</td></tr>
+    <tr><td>Mésinformation</td><td>Partager une fausse information en la croyant vraie.</td></tr>
+    <tr><td>Infox</td><td>Mot français pour « fake news » : une fausse information.</td></tr>
+    <tr><td>Hypertrucage</td><td>Mot français pour « deepfake » : vidéo ou voix truquée par intelligence artificielle.</td></tr>
+    <tr><td>Post-vérité</td><td>Situation où les émotions et les croyances comptent plus que les faits pour convaincre.</td></tr>
+    <tr><td>Esprit critique</td><td>L'habitude de vérifier avant de croire : qui parle, d'où vient l'information, est-elle confirmée ?</td></tr></table></div>
+    <div class="tip"><span class="lab">Astuce</span>Distinguer <b>mensonge</b> et <b>erreur</b>, ou <b>désinformation</b> et <b>mésinformation</b>, montre au correcteur que tu nuances. C'est exactement ce qu'il attend.</div>`},
+  { titre:"Œuvres de référence à connaître", freq:"Pour nourrir l'essai", html:`
+    <p>Tu n'as pas besoin de tout lire. Choisis 4 ou 5 œuvres, et pour chacune, retiens le résumé et l'idée qu'elle illustre.</p>
+    <div class="tbl"><table><tr><th>Œuvre</th><th>De quoi ça parle</th><th>Idée à en tirer</th></tr>
+    <tr><td><i>The Truman Show</i>, film de Peter Weir (1998)</td><td>Un homme découvre que toute sa vie est une émission de télévision filmée à son insu.</td><td>On peut vivre dans un monde faux sans le savoir ; les médias peuvent fabriquer une réalité.</td></tr>
+    <tr><td><i>Arrête-moi si tu peux</i>, film de Steven Spielberg (2002)</td><td>Un jeune faussaire se fait passer pour pilote, médecin, avocat, et fabrique de faux chèques.</td><td>Le faux séduit ; l'apparence et l'assurance suffisent souvent à faire croire.</td></tr>
+    <tr><td><i>Illusions perdues</i>, roman d'Honoré de Balzac (1837-1843)</td><td>Un jeune poète monte à Paris et devient journaliste dans une presse qui fait et défait les réputations pour de l'argent.</td><td>L'information peut être achetée et manipulée.</td></tr>
+    <tr><td><i>La Servante écarlate</i>, roman de Margaret Atwood (1985)</td><td>Dans une dictature religieuse, le pouvoir contrôle les mots, les livres et la mémoire.</td><td>Contrôler la vérité, c'est contrôler les gens.</td></tr>
+    <tr><td><i>La Rumeur d'Orléans</i>, enquête d'Edgar Morin (1969)</td><td>Une fausse rumeur d'enlèvements de jeunes femmes dans des boutiques se répand dans une ville.</td><td>Une rumeur se propage par la peur, sans aucune preuve.</td></tr>
+    <tr><td><i>L'Adversaire</i>, récit d'Emmanuel Carrère (2000)</td><td>L'histoire vraie d'un homme qui a fait croire à tous pendant dix-huit ans qu'il était médecin.</td><td>Un mensonge peut devenir une vie entière, jusqu'au drame.</td></tr>
+    <tr><td><i>Les Indes fourbes</i>, bande dessinée d'Alain Ayroles et Juanjo Guarnido (2019)</td><td>Un vagabond rusé raconte sa propre histoire… en mentant au lecteur.</td><td>Le récit lui-même peut tromper ; il faut lire avec méfiance.</td></tr></table></div>`},
+  { titre:"Méthode : les questions sur le corpus", freq:"Première partie, 10 points", html:`
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+    <li><b>Lire le paratexte</b> : auteur, date, nature du document (roman, article, affiche). La date compte : un texte de 1840 et un article de 2025 ne parlent pas du faux de la même façon.</li>
+    <li><b>Lire les questions avant les documents</b>, pour savoir quoi chercher.</li>
+    <li><b>Répondre en rédigeant</b> : une phrase de réponse directe, puis la justification avec des éléments précis des documents (une courte citation entre guillemets ou une référence à une ligne), puis une phrase d'interprétation.</li>
+    <li><b>Comparer</b> quand la question le demande : « Les deux documents s'accordent sur… En revanche, le document 2… »</li></ol>
+    <div class="ex"><span class="lab">Exemple de réponse</span>Question : « Comment le document 1 montre-t-il que le faux peut séduire ? »<br>Réponse : « Le document 1 montre que le faux séduit parce qu'il paraît plus beau que le réel. Ainsi, le narrateur décrit l'escroc comme “élégant” et “rassurant” (ligne 4) : son apparence soignée suffit à gagner la confiance de ses victimes. Le texte suggère donc que nous croyons plus volontiers ce qui nous plaît que ce qui est vrai. »</div>
+    <div class="trap"><span class="lab">Erreurs fréquentes</span>Répondre par des listes ou des phrases sans verbe. Paraphraser le document sans l'analyser. Oublier de répondre à une partie de la question.</div>`},
+  { titre:"Méthode : l'essai", freq:"Deuxième partie, 10 points", html:`
+    <ul><li><b>Introduction</b> : une accroche (un fait d'actualité, une œuvre), la question du sujet reformulée, l'annonce du plan.</li>
+    <li><b>Développement en 2 ou 3 parties</b>. Plan simple et efficace : 1) oui, le faux trompe et menace… 2) mais il peut aussi révéler une vérité… 3) l'enjeu est donc d'apprendre à les distinguer.</li>
+    <li>Chaque paragraphe = <b>un argument + une explication + un exemple précis</b> (un document du corpus, une œuvre, un fait d'actualité, ton expérience professionnelle).</li>
+    <li><b>Conclusion</b> : ta réponse nette à la question, éventuellement une ouverture.</li></ul>
+    <div class="ex"><span class="lab">Sujet possible</span>« Le mensonge est-il toujours condamnable ? »<br>Partie 1 : le mensonge détruit la confiance (exemple : <i>L'Adversaire</i>, un mensonge qui finit en drame).<br>Partie 2 : certains mensonges protègent ou font du bien (le mensonge pour ne pas blesser, le secret médical) et la fiction est un « mensonge » utile (le « mentir-vrai » d'Aragon).<br>Conclusion : tout dépend de l'intention et des conséquences.</div>
+    <div class="tip"><span class="lab">Connecteurs pour nuancer</span>certes… mais ; cependant ; en revanche ; c'est pourquoi ; en définitive. L'épreuve évalue la <b>nuance</b> : évite les réponses en « tout blanc ou tout noir ».</div>`}
+  ],
+  quiz:[
+  {q:"Quel est le thème de culture générale de la session 2027 ?",o:["Les animaux et nous","Le vrai du faux","Invitation au voyage"],a:1,e:"« Le vrai du faux », fixé par note de service du ministère publiée au Bulletin officiel en avril 2026."},
+  {q:"Combien de temps dure l'épreuve ?",o:["2 heures","3 heures","4 heures"],a:1,e:"3 heures depuis la réforme. L'ancienne épreuve durait 4 heures."},
+  {q:"Partager une fausse information en la croyant vraie, c'est…",o:["De la désinformation","De la mésinformation","Un mensonge"],a:1,e:"La mésinformation est involontaire. La désinformation est volontaire."},
+  {q:"Le « mentir-vrai » est une expression de…",o:["Louis Aragon","Honoré de Balzac","Edgar Morin"],a:0,e:"Aragon désigne ainsi la fiction : une histoire inventée qui dit quelque chose de vrai."},
+  {q:"Dans l'essai, on peut donner son avis…",o:["Non, jamais","Oui, de façon argumentée et nuancée","Oui, sans avoir besoin d'exemples"],a:1,e:"L'essai attend une réponse personnelle, mais appuyée sur des arguments et des exemples."},
+  {q:"Quelle œuvre raconte la vie d'un homme filmé à son insu dans un monde artificiel ?",o:["The Truman Show","Arrête-moi si tu peux","La Servante écarlate"],a:0,e:"Film de Peter Weir (1998)."},
+  {q:"« Hypertrucage » est le mot français pour…",o:["Fake news","Deepfake","Hacker"],a:1,e:"Vidéo, image ou voix truquée par intelligence artificielle. Fake news se dit « infox »."}
+  ],
+  cas:[
+  {titre:"Entraînement : corpus « Peut-on se fier aux images ? »", enonce:`<p>Imagine le corpus suivant (documents résumés pour l'entraînement) :</p>
+   <ul><li><b>Document 1</b> : récit antique rapporté par Pline l'Ancien (Ier siècle). Le peintre Zeuxis peint des raisins si réalistes que des oiseaux viennent les picorer ; son rival Parrhasios peint ensuite un rideau si réaliste que Zeuxis lui-même demande qu'on l'écarte pour voir le tableau.</li>
+   <li><b>Document 2</b> : article de presse de 2023. Une image du pape en doudoune blanche, créée par une intelligence artificielle, est partagée des millions de fois et crue vraie par de nombreux internautes.</li></ul>`,
+   qs:[
+    {q:"1. Qu'ont en commun les deux documents ?",r:"Les deux documents montrent une image <b>fausse</b> qui est <b>prise pour vraie</b>. Dans le document 1, les oiseaux puis Zeuxis sont trompés par la peinture ; dans le document 2, les internautes sont trompés par l'image fabriquée. Dans les deux cas, plus l'image ressemble au réel, plus elle trompe."},
+    {q:"2. En quoi le regard porté sur l'illusion est-il différent dans les deux documents ?",r:"Dans le document 1, l'illusion est <b>admirée</b> : elle prouve le talent de l'artiste, et le public sait qu'il regarde une peinture. Dans le document 2, l'illusion est <b>inquiétante</b> : personne ne savait que l'image était fausse, et elle circule comme une information. La différence tient donc à l'<b>intention</b> et au <b>contexte</b> : une œuvre d'art annoncée comme telle, ou une image qui se fait passer pour un fait."},
+    {q:"3. Proposez un plan pour l'essai : « Peut-on encore croire ce que l'on voit ? »",r:"<b>1.</b> Non : les images peuvent être fabriquées et manipulées plus facilement que jamais (intelligence artificielle, hypertrucages, rumeurs sur les réseaux sociaux ; <i>The Truman Show</i>).<br><b>2.</b> Mais l'image fausse n'est pas toujours mensongère : l'art et la fiction créent des illusions assumées qui révèlent des vérités (Zeuxis, le « mentir-vrai » d'Aragon).<br><b>3.</b> On peut donc encore croire ce que l'on voit, à condition de développer son esprit critique : vérifier la source, croiser les informations, s'informer auprès de médias fiables."}
+   ]}
+  ]
+},
+{ id:"ang", code:"Anglais", group:"Matières générales", name:"Langue vivante étrangère : anglais", short:"Vocabulaire de la comptabilité et des affaires",
+  fiches:[
+  { titre:"Vocabulaire de la comptabilité", freq:"Indispensable", html:`
+    <div class="tbl"><table><tr><th>Anglais</th><th>Français</th></tr>
+    <tr><td>invoice</td><td>facture</td></tr><tr><td>credit note</td><td>facture d'avoir</td></tr>
+    <tr><td>balance sheet</td><td>bilan</td></tr><tr><td>income statement / profit and loss account</td><td>compte de résultat</td></tr>
+    <tr><td>assets / liabilities</td><td>actif / dettes</td></tr><tr><td>equity</td><td>capitaux propres</td></tr>
+    <tr><td>revenue / turnover / sales</td><td>chiffre d'affaires</td></tr><tr><td>profit / loss</td><td>bénéfice / perte</td></tr>
+    <tr><td>accounts receivable</td><td>créances clients</td></tr><tr><td>accounts payable</td><td>dettes fournisseurs</td></tr>
+    <tr><td>VAT (value added tax)</td><td>taxe sur la valeur ajoutée</td></tr><tr><td>depreciation</td><td>amortissement</td></tr>
+    <tr><td>cash flow</td><td>flux de trésorerie</td></tr><tr><td>payroll / payslip</td><td>paie / bulletin de paie</td></tr>
+    <tr><td>accountant / bookkeeper</td><td>comptable</td></tr><tr><td>accounting firm</td><td>cabinet comptable</td></tr></table></div>
+    <div class="ex"><span class="lab">Exemple</span>« Please find attached the invoice for your last order. Payment is due within 30 days. » = Veuillez trouver ci-joint la facture de votre dernière commande. Le paiement est dû sous 30 jours.</div>`},
+  { titre:"Décrire des chiffres et des évolutions", freq:"Très fréquent", html:`
+    <div class="tbl"><table><tr><th>Sens</th><th>Verbes</th><th>Noms</th></tr>
+    <tr><td>Monter</td><td>to increase, to rise, to grow, to go up</td><td>an increase, a rise, growth</td></tr>
+    <tr><td>Descendre</td><td>to decrease, to fall, to drop, to decline</td><td>a decrease, a fall, a drop</td></tr>
+    <tr><td>Rester stable</td><td>to remain stable, to level off</td><td>stability</td></tr>
+    <tr><td>Atteindre un sommet</td><td>to peak, to reach a peak</td><td>a peak</td></tr></table></div>
+    <p>Pour nuancer : slightly (légèrement), sharply / dramatically (fortement), steadily (régulièrement).</p>
+    <div class="ex"><span class="lab">Exemple</span>« Sales <b>rose sharply</b> by 15% in 2025, then <b>fell slightly</b> in 2026. » = Les ventes ont fortement augmenté de 15 % en 2025, puis ont légèrement baissé en 2026.</div>
+    <div class="trap"><span class="lab">Piège</span><b>by</b> 15 % = de 15 % (l'écart) ; <b>to</b> 50 000 = jusqu'à 50 000 (la valeur d'arrivée).</div>`},
+  { titre:"Le courriel professionnel", freq:"Fréquent", html:`
+    <ul><li><b>Ouverture</b> : Dear Mr Smith, / Dear Ms Jones, / Dear Sir or Madam, (si on ne connaît pas le nom).</li>
+    <li><b>Objet du message</b> : I am writing to… (je vous écris pour…) ; Further to our phone call… (suite à notre appel…).</li>
+    <li><b>Demander</b> : Could you please send me…? / I would be grateful if you could…</li>
+    <li><b>Joindre</b> : Please find attached…</li>
+    <li><b>Conclure</b> : I look forward to hearing from you. (Dans l'attente de votre réponse.)</li>
+    <li><b>Formule finale</b> : Yours sincerely (nom connu), Yours faithfully (nom inconnu), Best regards (plus courant et moins formel).</li></ul>
+    <div class="ex"><span class="lab">Exemple</span>Dear Ms Taylor,<br>I am writing to inform you that invoice n° 248 is still unpaid. Could you please arrange payment by 15 May?<br>I look forward to hearing from you.<br>Best regards,<br>Karim Benali, Accounting Department</div>`},
+  { titre:"Faux amis et temps à ne pas confondre", freq:"Fréquent", html:`
+    <div class="tbl"><table><tr><th>Mot anglais</th><th>Vrai sens</th><th>À ne pas confondre avec</th></tr>
+    <tr><td>actually</td><td>en fait</td><td>actuellement = currently</td></tr>
+    <tr><td>eventually</td><td>finalement</td><td>éventuellement = possibly</td></tr>
+    <tr><td>benefit</td><td>avantage</td><td>bénéfice = profit</td></tr>
+    <tr><td>charges</td><td>frais facturés</td><td>charges comptables = expenses</td></tr>
+    <tr><td>to control</td><td>diriger, maîtriser</td><td>contrôler = to check</td></tr></table></div>
+    <p><b>Prétérit ou present perfect ?</b></p>
+    <ul><li><b>Prétérit</b> (sold, increased) : action terminée à un moment précis du passé. « Sales increased <b>in 2024</b>. »</li>
+    <li><b>Present perfect</b> (have sold, has increased) : action qui a un lien avec maintenant, sans date précise. « Sales <b>have increased since</b> January. »</li></ul>`},
+  { titre:"Préparer l'oral d'anglais", freq:"Pour l'épreuve orale", html:`
+    <p>L'épreuve d'anglais du BTS Comptabilité et Gestion se passe à l'oral. On attend que tu saches <b>te présenter</b>, <b>parler de ton travail</b> et <b>comprendre un document</b> professionnel.</p>
+    <div class="ex"><span class="lab">Exemple de présentation à adapter</span>« Good morning. My name is … and I am a second-year student in Accounting and Management. I am doing my course as a work-study student: I work as a secretary in a social centre, a non-profit organisation that helps local families. My main tasks are welcoming the public, managing registrations and following up payments. Next year, I would like to … »</div>
+    <ul><li><b>work-study student</b> : étudiant en alternance</li><li><b>non-profit organisation</b> : association à but non lucratif</li><li><b>to follow up payments</b> : suivre les paiements</li><li><b>registration</b> : inscription</li><li><b>my main tasks are…</b> : mes missions principales sont…</li></ul>
+    <div class="tip"><span class="lab">Astuce</span>Apprends ta présentation par cœur, puis entraîne-toi à la dire à voix haute en te chronométrant (2 minutes). Si tu ne comprends pas une question, demande : « Could you repeat, please? »</div>`}
+  ],
+  quiz:[
+  {q:"« Balance sheet » signifie :",o:["Compte de résultat","Bilan","Balance des comptes"],a:1,e:"Balance sheet = bilan. Le compte de résultat se dit income statement."},
+  {q:"« Accounts payable » correspond à :",o:["Les créances clients","Les dettes fournisseurs","La trésorerie"],a:1,e:"Payable = à payer : ce que l'entreprise doit à ses fournisseurs."},
+  {q:"« Actually » se traduit par :",o:["Actuellement","En fait","Activement"],a:1,e:"Faux ami : actuellement se dit currently."},
+  {q:"« Profits fell by 5% » signifie :",o:["Les bénéfices ont baissé de 5 %","Les bénéfices ont baissé jusqu'à 5 %","Les bénéfices ont augmenté de 5 %"],a:0,e:"By = l'écart ; fell = passé de to fall, baisser."},
+  {q:"Pour terminer un courriel adressé à « Dear Sir or Madam », on écrit :",o:["Yours sincerely","Yours faithfully","Love"],a:1,e:"Yours faithfully quand on ne connaît pas le nom du destinataire."},
+  {q:"« Sales ___ since January. »",o:["increased","have increased","increase"],a:1,e:"Since + lien avec le présent → present perfect : have increased."}
+  ],
+  cas:[]
+},
+{ id:"oral", code:"Oraux", group:"Épreuves orales", name:"Épreuves orales professionnelles", short:"Situations professionnelles et jury",
+  fiches:[
+  { titre:"Les épreuves orales du BTS Comptabilité et Gestion", freq:"À connaître avant tout", html:`
+    <p>En plus des écrits, le BTS comporte des épreuves où tu présentes <b>ton propre travail</b>, à partir d'un dossier de situations professionnelles vécues en entreprise ou en stage.</p>
+    <ul><li><b>Pratiques comptables, fiscales et sociales</b> : situations liées aux processus 1 à 4 (opérations commerciales, travaux d'inventaire, fiscalité, paie).</li>
+    <li><b>Situations de contrôle de gestion et d'analyse financière</b> : situations liées aux processus 5 et 6 (coûts, budgets, analyse financière).</li>
+    <li><b>Parcours de professionnalisation</b> : un entretien sur ton parcours, l'analyse d'un processus et ce que tu as appris.</li>
+    <li><b>Anglais</b> : à l'oral.</li></ul>
+    <p>Pour les candidats qui passent l'examen en épreuves finales, le calendrier 2026 prévoyait par exemple 15 minutes de préparation puis 30 minutes d'épreuve pour les deux premières, et 30 minutes pour le parcours de professionnalisation, en juin.</p>
+    <div class="trap"><span class="lab">À vérifier absolument</span>Selon ton centre de formation, certaines épreuves se passent en contrôle en cours de formation, avec d'autres dates et d'autres modalités. Demande à SFA Formation la liste exacte de tes épreuves, leurs dates et le contenu attendu du dossier.</div>`},
+  { titre:"Rédiger une fiche de situation professionnelle", freq:"La base de ton dossier", html:`
+    <p>Chaque situation se présente avec le même plan. Le jury veut comprendre <b>ce que tu as fait toi-même</b> et <b>pourquoi</b>.</p>
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+    <li><b>Contexte</b> : l'organisation, le service, ta place.</li>
+    <li><b>Mission</b> : ce qu'on t'a demandé.</li>
+    <li><b>Actions</b> : ce que tu as fait, étape par étape.</li>
+    <li><b>Outils</b> : logiciel comptable, progiciel de gestion intégré, tableur, documents utilisés.</li>
+    <li><b>Difficultés et solutions</b>.</li>
+    <li><b>Résultat</b> : ce que ton travail a produit, chiffres à l'appui si possible.</li>
+    <li><b>Processus et compétences</b> du référentiel concernés.</li></ol>
+    <div class="ex"><span class="lab">Exemple à adapter à ta réalité</span><b>Contexte</b> : un centre social, association qui accueille des familles d'un quartier.<br><b>Mission</b> : suivre les paiements des inscriptions aux activités.<br><b>Actions</b> : enregistrer chaque paiement, comparer chaque mois avec les relevés bancaires, relancer les familles en retard.<br><b>Outils</b> : un tableur avec un tableau de suivi, le relevé bancaire.<br><b>Difficulté</b> : des virements sans nom identifiable. <b>Solution</b> : ajouter une référence d'inscription à donner lors du paiement.<br><b>Résultat</b> : tous les paiements du trimestre rapprochés.<br><b>Processus</b> : 1 (suivi des encaissements) et 7 (fiabilisation de l'information).</div>
+    <div class="trap"><span class="lab">Attention</span>N'écris que ce que tu as réellement fait : le jury pose des questions précises et repère vite une situation inventée.</div>`},
+  { titre:"Les situations à collecter pendant ton stage en cabinet", freq:"À faire de janvier à mars", html:`
+    <p>Le stage en cabinet comptable est l'occasion de remplir ton dossier. Cherche à vivre ces situations :</p>
+    <ul><li>la saisie de factures d'achat et de vente, et le lettrage des comptes clients et fournisseurs ;</li>
+    <li>un rapprochement bancaire ;</li>
+    <li>une déclaration de taxe sur la valeur ajoutée ;</li>
+    <li>la préparation de bulletins de paie ou des déclarations sociales ;</li>
+    <li>des travaux d'inventaire (amortissements, charges constatées d'avance) ;</li>
+    <li>la révision d'un compte ou d'un dossier de fin d'année.</li></ul>
+    <div class="tip"><span class="lab">Méthode simple</span>Chaque vendredi, note en 5 lignes : la date, la tâche, le client (sans son nom), l'outil, la difficulté. En mars, tu auras une dizaine de situations au lieu de chercher dans tes souvenirs.</div>
+    <div class="trap"><span class="lab">Secret professionnel</span>Les documents des clients du cabinet sont confidentiels. Ne garde que des copies <b>anonymisées</b>, avec l'accord de ton tuteur.</div>`},
+  { titre:"Réussir l'entretien avec le jury", freq:"Pour tous les oraux", html:`
+    <ul><li><b>Prépare une présentation de 5 minutes</b> que tu sais dire sans lire : qui tu es, ton alternance, tes missions, ce que tu as appris.</li>
+    <li><b>Justifie avec une règle</b> : « J'ai utilisé le compte 486 car cette charge concerne l'exercice suivant. » La règle compte plus que le geste.</li>
+    <li><b>Si tu ne sais pas</b> : dis-le simplement, puis raisonne à voix haute. Le jury note aussi ta façon de réfléchir.</li>
+    <li><b>Analyse réflexive</b> : le jury veut savoir ce que tu as appris, ce que tu ferais autrement et comment tu as progressé.</li>
+    <li><b>Entraîne-toi à voix haute</b>, devant quelqu'un ou en t'enregistrant.</li></ul>
+    <div class="ex"><span class="lab">Exemple de réponse réflexive</span>« Au début, je saisissais les factures sans vérifier les montants. Après une erreur de taxe repérée par ma tutrice, j'ai pris l'habitude de vérifier que le total toutes taxes comprises correspond bien au hors taxes multiplié par 1,20. Aujourd'hui, je fais ce contrôle sur chaque facture. »</div>`}
+  ],
+  quiz:[
+  {q:"Dans une fiche de situation professionnelle, on décrit…",o:["Ce que l'entreprise fait en général","Ce que j'ai fait moi-même, étape par étape","Le cours sur le sujet"],a:1,e:"Le jury évalue ton travail réel et ta compréhension."},
+  {q:"Face à une question dont tu ne connais pas la réponse, le mieux est de…",o:["Inventer une réponse","Rester silencieux","Le dire, puis raisonner à voix haute"],a:2,e:"Le jury apprécie l'honnêteté et la capacité à raisonner."},
+  {q:"Les documents d'un client du cabinet que tu gardes pour ton dossier doivent être…",o:["Originaux","Anonymisés, avec l'accord du tuteur","Publiés en annexe tels quels"],a:1,e:"Le secret professionnel s'applique : on retire les noms et informations identifiantes."}
+  ],
+  cas:[
+  {titre:"Entraînement : les questions fréquentes du jury", enonce:`<p>Lis la question, réponds à voix haute comme devant le jury, puis compare avec les conseils.</p>`,
+   qs:[
+    {q:"« Présentez-nous votre organisation et votre place dans le service. »",r:"Réponds en 1 minute : type d'organisation (une association, un cabinet), activité, taille, ton service, ton rôle. Termine par une transition : « C'est dans ce cadre que j'ai réalisé la situation que je vais vous présenter. »"},
+    {q:"« Pourquoi avez-vous utilisé ce compte ? »",r:"Cite la règle, puis l'applique : « Cette dépense concerne l'achat de marchandises destinées à être revendues, donc j'ai utilisé le compte 607 Achats de marchandises, et non le 606 qui concerne les fournitures. »"},
+    {q:"« Comment avez-vous vérifié que votre travail était juste ? »",r:"Donne un contrôle concret : égalité débit et crédit, rapprochement avec le relevé bancaire, comparaison avec le mois précédent, vérification du calcul de la taxe, relecture par le tuteur."},
+    {q:"« Et si le client n'avait pas payé, qu'auriez-vous fait ? »",r:"Le jury teste ton raisonnement : relance amiable, puis mise en demeure ; au 31 décembre, si le paiement est incertain, reclassement en client douteux (compte 416) et dépréciation du montant hors taxes."},
+    {q:"« Quelle difficulté avez-vous rencontrée ? »",r:"Choisis une vraie difficulté, explique comment tu l'as résolue et ce que tu en as retenu. Une difficulté bien surmontée vaut mieux qu'une mission « parfaite »."},
+    {q:"« Comment pourrait-on fiabiliser ce processus ? »",r:"Propose une amélioration réaliste : un contrôle supplémentaire, une check-list, un tableau de suivi partagé, une saisie automatique dans le logiciel, une séparation des tâches (celui qui saisit n'est pas celui qui paie)."},
+    {q:"« À quoi sert la veille pour un comptable ? »",r:"À rester à jour sur les règles qui changent chaque année (taux de taxe, cotisations sociales, seuils fiscaux). Donne un exemple de ta propre veille : outil utilisé, sources officielles suivies, information trouvée et utilisée."}
+   ]}
+  ]
+}
+];
+const ORDER=["p1","p2","p3","p4","p5","p6","p7","cejm","maths","cg","ang","oral"];
+SUBJECTS.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
+
+/* ===================== SUJETS D'EXAMEN ===================== */
+const EXAMS = [
+{ id:"ex-cas", titre:"Société Maréva : opérations comptables, fiscales et sociales", epreuve:"Étude de cas (processus 1 à 4)", duree:90,
+  intro:`<p>La société par actions simplifiée Maréva vend du matériel de plongée à des clubs et à des magasins. Elle clôture son exercice le 31 décembre N. Taux de taxe sur la valeur ajoutée : 20 %. Vous êtes assistant(e) comptable et devez traiter les dossiers suivants.</p>
+  <p class="eyebrow">Format réduit pour l'entraînement : 4 dossiers, 1 h 30, noté sur 20. L'épreuve réelle est plus longue (4 h 30).</p>`,
+  annexes:`<h3>Annexe 1 : facture F-512 du 3 mars N, client Club Nautilus</h3>
+  <p>15 combinaisons à 120 euros hors taxes l'unité. Remise : 10 %. Escompte : 2 % pour paiement sous 8 jours. Frais de port refacturés : 40 euros hors taxes (sans remise ni escompte).</p>
+  <h3>Annexe 2 : facture d'avoir A-27 du 10 mars N</h3>
+  <p>Rabais de 100 euros hors taxes accordé au Club Nautilus pour un retard de livraison.</p>
+  <h3>Annexe 3 : éléments de la déclaration de taxe de mars N</h3>
+  <p>Taxe collectée : 9 400 euros. Taxe déductible sur biens et services : 5 100 euros. Taxe déductible sur immobilisations : 600 euros. Crédit de taxe reporté de février : 300 euros.<br>Le 18 mars, Maréva a aussi acheté 4 000 euros hors taxes de palmes à un fournisseur italien.</p>
+  <h3>Annexe 4 : paie de mars N, salariée Julie Morel</h3>
+  <p>Taux horaire : 14 euros, 151,67 heures par mois. 5 heures supplémentaires majorées à 25 %. Taux simplifiés pour l'exercice : cotisations salariales 22 % du brut, cotisations patronales 42 % du brut. Prélèvement à la source : 40 euros.</p>
+  <h3>Annexe 5 : travaux d'inventaire au 31 décembre N</h3>
+  <p>Un compresseur acheté 18 000 euros hors taxes, mis en service le 1er mai N, amorti en linéaire sur 5 ans.<br>Le client Club Méduse doit 3 000 euros toutes taxes comprises. Il est en redressement judiciaire : perte probable 60 %.</p>`,
+  qs:[
+   {q:"Dossier 1. Calculez le montant de la facture F-512 et enregistrez-la.",pts:3,r:`Brut 1 800 → remise 180 → net commercial 1 620 → escompte 32,40 → net financier 1 587,60. Port 40. Base taxable 1 627,60. Taxe 325,52. <b>Total 1 953,12</b>.<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>411 Clients</td><td class="num">1 953,12</td><td></td></tr><tr><td>665 Escomptes accordés</td><td class="num">32,40</td><td></td></tr><tr><td>707 Ventes de marchandises</td><td></td><td class="num">1 620,00</td></tr><tr><td>7085 Ports facturés</td><td></td><td class="num">40,00</td></tr><tr><td>44571 Taxe collectée</td><td></td><td class="num">325,52</td></tr></table></div>Barème : 1,5 point pour les calculs, 1,5 point pour l'écriture.`},
+   {q:"Dossier 1. Enregistrez la facture d'avoir A-27.",pts:2,r:`<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>709 Rabais, remises et ristournes accordés</td><td class="num">100</td><td></td></tr><tr><td>44571 Taxe collectée</td><td class="num">20</td><td></td></tr><tr><td>411 Clients</td><td></td><td class="num">120</td></tr></table></div>`},
+   {q:"Dossier 2. Calculez et enregistrez la taxe à décaisser de mars (sans l'achat italien).",pts:3,r:`9 400 − 5 100 − 600 − 300 = <b>3 400 euros</b>.<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>44571 Taxe collectée</td><td class="num">9 400</td><td></td></tr><tr><td>44566 Taxe déductible biens et services</td><td></td><td class="num">5 100</td></tr><tr><td>44562 Taxe déductible immobilisations</td><td></td><td class="num">600</td></tr><tr><td>44567 Crédit de taxe</td><td></td><td class="num">300</td></tr><tr><td>44551 Taxe à décaisser</td><td></td><td class="num">3 400</td></tr></table></div>`},
+   {q:"Dossier 2. Enregistrez l'achat au fournisseur italien.",pts:2,r:`Autoliquidation : la facture est hors taxes.<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>607 Achats de marchandises</td><td class="num">4 000</td><td></td></tr><tr><td>44566 Taxe déductible</td><td class="num">800</td><td></td></tr><tr><td>4452 Taxe due intracommunautaire</td><td></td><td class="num">800</td></tr><tr><td>401 Fournisseurs</td><td></td><td class="num">4 000</td></tr></table></div>`},
+   {q:"Dossier 3. Calculez le salaire brut et le net à payer de Julie Morel.",pts:4,r:`Base : 151,67 × 14 = 2 123,38. Heures supplémentaires : 5 × 14 × 1,25 = 87,50. <b>Brut : 2 210,88</b>.<br>Cotisations salariales : 2 210,88 × 22 % = 486,39. Net avant impôt : 1 724,49. <b>Net à payer : 1 724,49 − 40 = 1 684,49</b>.`},
+   {q:"Dossier 3. Enregistrez la paie et les cotisations patronales.",pts:2,r:`Cotisations patronales : 2 210,88 × 42 % = 928,57.<div class="tbl"><table><tr><th>Compte</th><th>Débit</th><th>Crédit</th></tr><tr><td>641 Rémunérations</td><td class="num">2 210,88</td><td></td></tr><tr><td>431/437 Organismes sociaux</td><td></td><td class="num">486,39</td></tr><tr><td>4421 Prélèvement à la source</td><td></td><td class="num">40,00</td></tr><tr><td>421 Rémunérations dues</td><td></td><td class="num">1 684,49</td></tr><tr><td>645 Charges sociales</td><td class="num">928,57</td><td></td></tr><tr><td>431/437 Organismes sociaux</td><td></td><td class="num">928,57</td></tr></table></div>`},
+   {q:"Dossier 4. Calculez et enregistrez la dotation aux amortissements du compresseur. Donnez sa valeur nette comptable.",pts:2,r:`Annuité : 18 000 × 20 % = 3 600. N (8 mois, de mai à décembre) : 3 600 × 8/12 = <b>2 400</b>. Valeur nette comptable : <b>15 600</b>.<br>Écriture : 6811 au débit, 2815 au crédit, 2 400.`},
+   {q:"Dossier 4. Traitez la créance du Club Méduse.",pts:2,r:`Hors taxes : 3 000 ÷ 1,20 = 2 500. Dépréciation : 2 500 × 60 % = <b>1 500</b>.<br>416 au débit et 411 au crédit pour 3 000 ; 6817 au débit et 491 au crédit pour 1 500.`}
+  ]},
+{ id:"ex-cejm", titre:"Les Ateliers Kerlan, vélos électriques", epreuve:"Culture économique, juridique et managériale", duree:90,
+  intro:`<p class="eyebrow">Format réduit pour l'entraînement : 1 h 30, noté sur 20. L'épreuve réelle dure 4 heures et s'appuie sur un dossier documentaire plus long.</p>`,
+  annexes:`<h3>Situation</h3>
+  <p>Les Ateliers Kerlan est une société par actions simplifiée créée en 2018 par Maëlle Kerlan à Lorient. Elle emploie 35 salariés et fabrique des vélos électriques haut de gamme, vendus en moyenne 3 900 euros. Sa finalité est de développer des déplacements plus propres tout en restant rentable.</p>
+  <p><b>Atouts et limites</b> : la qualité de ses vélos est reconnue et ses ouvriers ont un vrai savoir-faire. Mais ses prix sont élevés, sa capacité de production est limitée et elle dépend d'un seul fournisseur de batteries.</p>
+  <p><b>Environnement</b> : le marché du vélo électrique progresse, porté par les aides publiques à l'achat et le prix des carburants. Mais des marques à bas prix arrivent dans les grandes surfaces de sport, et le prix des composants augmente.</p>
+  <p><b>Décision</b> : pour se développer, Maëlle Kerlan propose trois projets à ses chefs d'atelier. Après un vote, elle applique le choix de la majorité : lancer une gamme de vélos cargos pour les familles et les artisans.</p>
+  <p><b>Litige 1</b> : le contrat signé avec le fournisseur Voltan prévoyait la livraison de 500 batteries le 1er mars. Le 15 avril, rien n'est arrivé et Voltan ne donne aucune explication. La production est à l'arrêt.</p>
+  <p><b>Litige 2</b> : un client, M. Diallo, a chuté et s'est blessé au poignet à cause d'un frein défectueux monté sur son vélo Kerlan.</p>`,
+  qs:[
+   {q:"1. Identifiez la finalité des Ateliers Kerlan et le type d'organisation.",pts:2,r:"Entreprise privée à finalité <b>lucrative</b> (elle cherche à être rentable), avec aussi une dimension environnementale affichée (développer des déplacements plus propres)."},
+   {q:"2. Réalisez le diagnostic stratégique de l'entreprise (forces, faiblesses, opportunités, menaces).",pts:4,r:"<b>Forces</b> : qualité reconnue, savoir-faire.<br><b>Faiblesses</b> : prix élevés, capacité de production limitée, dépendance à un seul fournisseur.<br><b>Opportunités</b> : marché en croissance, aides publiques, prix des carburants.<br><b>Menaces</b> : concurrents à bas prix, hausse du prix des composants.<br>Barème : 1 point par catégorie bien classée et justifiée."},
+   {q:"3. Le développement du marché du vélo électrique relève-t-il de l'économie ou du management ? Expliquez.",pts:2,r:"De l'<b>économie</b> : c'est l'évolution d'un marché (offre, demande, prix), qui concerne tous les fabricants et pas seulement Kerlan. La décision de Kerlan d'y répondre, elle, relève du management."},
+   {q:"4. Caractérisez la décision de lancer les vélos cargos et le style de direction de Maëlle Kerlan.",pts:3,r:"Décision <b>stratégique</b> (classement d'Ansoff) : elle engage l'avenir à long terme et modifie l'offre de l'entreprise.<br>Style <b>participatif</b> (Likert) : la décision est prise par un vote des chefs d'atelier, et la dirigeante applique le choix de la majorité."},
+   {q:"5. Litige 1 : quels sont les droits des Ateliers Kerlan face à Voltan ? Répondez avec un syllogisme juridique.",pts:5,r:"<b>Problème juridique</b> : quels sont les recours d'un contractant face à un partenaire qui n'exécute pas son obligation de livraison ?<br><b>Majeure</b> : selon l'article 1217 du Code civil, la partie envers laquelle l'engagement n'a pas été exécuté peut refuser d'exécuter sa propre obligation, poursuivre l'exécution forcée, obtenir une réduction du prix, provoquer la résolution du contrat et demander réparation des conséquences de l'inexécution ; les sanctions compatibles peuvent être cumulées. Le débiteur n'échappe à sa responsabilité qu'en cas de force majeure (article 1218).<br><b>Mineure</b> : Voltan s'était engagé par contrat à livrer 500 batteries le 1er mars. Au 15 avril, rien n'est livré, sans explication : il n'invoque aucun événement de force majeure. Kerlan subit un préjudice : sa production est arrêtée.<br><b>Conclusion</b> : Kerlan peut refuser de payer, exiger la livraison, ou mettre fin au contrat pour se fournir ailleurs, et demander des dommages et intérêts pour l'arrêt de production.<br>Barème : problème 1, majeure 1,5, mineure 1,5, conclusion 1."},
+   {q:"6. Litige 2 : sur quel fondement M. Diallo peut-il être indemnisé, et par qui ?",pts:4,r:"Responsabilité du fait des <b>produits défectueux</b> (articles 1245 et suivants du Code civil) : le producteur est responsable du dommage causé par un défaut de son produit, <b>même sans faute</b>. M. Diallo doit prouver le dommage (blessure au poignet), le défaut (frein défectueux) et le lien entre les deux (la chute). C'est la société Les Ateliers Kerlan, personne morale, qui l'indemnise ; ses associés ne sont responsables que dans la limite de leurs apports."}
+  ]},
+{ id:"ex-cg", titre:"Peut-on se fier aux apparences ?", epreuve:"Culture générale et expression", duree:180,
+  intro:`<p class="eyebrow">Format complet de l'épreuve : 3 heures. Partie 1 sur 10 points, partie 2 sur 10 points. Les documents 1 et 2 sont résumés ou écrits pour l'entraînement.</p>`,
+  annexes:`<h3>Document 1 : d'après Pline l'Ancien, <i>Histoire naturelle</i>, Ier siècle</h3>
+  <p>Deux peintres de la Grèce antique, Zeuxis et Parrhasios, s'affrontent. Zeuxis présente des raisins peints avec tant de réalisme que des oiseaux viennent les picorer. Fier, il demande à son rival d'écarter le rideau qui couvre son tableau. Mais le rideau est lui-même peint. Zeuxis reconnaît sa défaite : il a trompé des oiseaux, Parrhasios a trompé un peintre.</p>
+  <h3>Document 2 : texte écrit pour l'entraînement, à la manière d'un article de presse (2026)</h3>
+  <p>Il suffit aujourd'hui de quelques mots tapés dans un générateur d'images pour obtenir la photo d'un événement qui n'a jamais eu lieu. Certaines de ces images font le tour des réseaux sociaux en quelques heures, partagées par des internautes de bonne foi. Les spécialistes de la vérification conseillent de regarder les détails (les mains, les textes en arrière-plan), de chercher la source d'origine et de se méfier des images qui provoquent une émotion très forte.</p>
+  <h3>Document 3 : Jean de La Fontaine, « Le Corbeau et le Renard », <i>Fables</i>, 1668</h3>
+  <p>Le Renard, attiré par le fromage que tient le Corbeau, le couvre de compliments sur sa beauté et sa voix. Flatté, le Corbeau ouvre le bec pour chanter et laisse tomber le fromage. La morale de la fable : « Apprenez que tout flatteur / Vit aux dépens de celui qui l'écoute. »</p>`,
+  qs:[
+   {q:"Partie 1, question 1. Qu'est-ce qui rend le faux crédible dans les documents 1 et 2 ?",pts:3,r:"Dans les deux cas, le faux trompe parce qu'il <b>ressemble parfaitement au vrai</b> : les raisins et le rideau peints imitent la réalité, les images générées imitent des photographies. Le document 2 ajoute que le faux se répand grâce à la <b>bonne foi</b> de ceux qui le partagent et à l'<b>émotion</b> qu'il provoque."},
+   {q:"Partie 1, question 2. Comment le Renard trompe-t-il le Corbeau, et quelle leçon La Fontaine en tire-t-il ?",pts:3,r:"Le Renard ne montre pas une fausse image : il utilise des <b>paroles flatteuses</b>. Il joue sur la vanité du Corbeau, qui veut croire ce qu'on lui dit de beau sur lui. La morale explique que le flatteur profite toujours de celui qui l'écoute : il faut se méfier des discours qui nous font plaisir."},
+   {q:"Partie 1, question 3. Le faux est-il toujours condamnable dans ces trois documents ?",pts:4,r:"<b>Non</b>. Dans le document 1, l'illusion est <b>admirée</b> : c'est une preuve de talent, et le public sait qu'il regarde une peinture. Dans les documents 2 et 3, au contraire, le faux sert à <b>tromper</b> : pour obtenir un avantage (le fromage) ou en circulant comme une vraie information. Ce qui rend le faux condamnable, c'est donc l'<b>intention de tromper</b> et le fait de le présenter comme vrai. On remarque aussi que la fable est elle-même une fiction, une histoire « fausse », qui enseigne une vérité."},
+   {q:"Partie 2, essai (au choix). Sujet A : « Faut-il toujours dire la vérité ? » Sujet B : « Les images nous trompent-elles plus qu'avant ? »",pts:10,r:"<b>Plan possible pour le sujet A</b> : 1) La vérité est nécessaire : sans elle, pas de confiance (le mensonge du Renard, <i>L'Adversaire</i> de Carrère, les infox). 2) Mais certaines vérités blessent ou mettent en danger, et certains « mensonges » sont acceptables : la politesse, le secret qui protège, la fiction qui dit vrai (le « mentir-vrai » d'Aragon). 3) Ce qui compte : l'intention et les conséquences.<br><b>Plan possible pour le sujet B</b> : 1) Oui, la fabrication d'images fausses est devenue facile et rapide (document 2, hypertrucages). 2) Mais l'illusion par l'image est ancienne (document 1, la propagande du XXe siècle) et elle peut être un art. 3) Ce qui a changé, c'est la vitesse de diffusion : l'esprit critique devient indispensable.<br>Barème indicatif : 2 points pour l'introduction et la conclusion, 6 pour l'argumentation et les exemples, 2 pour la langue."}
+  ]}
+];
+
+/* ===================== PLANNING ===================== */
+const EXAM_DAY = new Date(2027,4,11);
+const PLAN = [
+ {start:[2026,10,24], end:[2026,11,22], titre:"Les bases et tes contrôles en cours", mode:"normal", minutes:45,
+  focus:["Économie et management (ton contrôle)","P1 : factures, avoirs, taxe sur la valeur ajoutée","Mathématiques : pourcentages et évolutions"]},
+ {start:[2026,11,23], end:[2026,12,20], titre:"Inventaire, fiscalité et droit", mode:"normal", minutes:45,
+  focus:["P2 : travaux d'inventaire","P3 : déclaration de taxe et impôt sur les sociétés","Droit : syllogisme et contrat","Culture générale : vocabulaire du thème et 2 œuvres"]},
+ {start:[2026,12,21], end:[2027,1,3], titre:"Vacances : consolidation", mode:"normal", minutes:40,
+  focus:["Pile « À revoir » chaque jour","Premier sujet d'examen : Société Maréva","Droit : responsabilité et contrat de travail"]},
+ {start:[2027,1,4], end:[2027,3,14], titre:"Stage en cabinet : mode allégé", mode:"stage", minutes:20,
+  focus:["20 minutes par jour : pile « À revoir » et une fiche","P4 : paie et fin de contrat (tu en verras au cabinet)","Chaque vendredi : noter ta situation professionnelle de la semaine"]},
+ {start:[2027,3,15], end:[2027,4,11], titre:"Gestion, analyse financière et oraux", mode:"normal", minutes:50,
+  focus:["P5 : coûts, seuil de rentabilité, écarts","P6 : soldes intermédiaires, bilan fonctionnel","P7 : bases de données et langage de requête","Mathématiques : suites, statistiques, probabilités","Rédiger tes fiches de situations professionnelles"]},
+ {start:[2027,4,12], end:[2027,5,2], titre:"Examens blancs", mode:"blanc", minutes:60,
+  focus:["Les 3 sujets d'examen chronométrés","Refaire les cas pratiques ratés","Anglais : présentation orale de 2 minutes"]},
+ {start:[2027,5,3], end:[2027,5,10], titre:"Dernière ligne droite", mode:"final", minutes:40,
+  focus:["Pile « À revoir »","Relire les fiches non maîtrisées","Dormir et préparer ta convocation"]},
+ {start:[2027,5,11], end:[2027,5,31], titre:"Épreuves écrites", mode:"exam", minutes:0,
+  focus:["Culture générale : mardi 11 mai, 9 h à 12 h","Culture économique, juridique et managériale : mercredi 12 mai, 8 h 30 à 12 h 30","Étude de cas et mathématiques : dates sur ta convocation"]},
+ {start:[2027,6,1], end:[2027,6,30], titre:"Épreuves orales", mode:"oral", minutes:30,
+  focus:["Relire ton dossier de situations","S'entraîner aux questions du jury","Anglais à l'oral"]}
+];
+const DAYS = {
+ normal:["Repos, ou 10 minutes de pile « À revoir »","Une nouvelle fiche, puis son quiz","Un cas pratique corrigé","Une nouvelle fiche, puis son quiz","Pile « À revoir » et 20 minutes de culture générale","Un cas pratique ou un sujet d'examen","Pile « À revoir » et relecture des fiches non maîtrisées"],
+ stage:["Repos","20 minutes : pile « À revoir » et une fiche","20 minutes : pile « À revoir » et une fiche","20 minutes : pile « À revoir » et une fiche","20 minutes : pile « À revoir » et une fiche","Noter ta situation professionnelle de la semaine","45 minutes : un cas pratique"],
+ blanc:["Repos","Correction détaillée du dernier sujet","Fiches des points ratés au sujet","Pile « À revoir »","Un cas pratique raté à refaire","Pile « À revoir » et anglais oral","Un sujet d'examen chronométré, en conditions réelles"],
+ final:["Repos","Pile « À revoir »","Fiches non maîtrisées","Pile « À revoir »","Culture générale : plan d'essai","Pile « À revoir » légère","Repos"],
+ exam:["Repos","Épreuve ou relecture légère","Épreuve ou relecture légère","Épreuve ou relecture légère","Épreuve ou relecture légère","Épreuve ou relecture légère","Repos"],
+ oral:["Repos","Présenter une situation à voix haute","Questions du jury","Présenter une situation à voix haute","Questions du jury","Anglais à l'oral","Relire le dossier"]
+};
+
+/* ===================== ÉTAT ===================== */
+const store = {
+  get(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+};
+const DAY = 86400000;
+const INTERVALS = [1,3,7,14];
+let state = { tab:"home", subj: store.get("subj","cejm"), qmode:"subject", qlist:[], quizIdx:0, quizScore:0, train:"cas", exam:null };
+let read = store.get("read",{});
+let best = store.get("best",{});
+let srs = store.get("srs",{});
+let examScores = store.get("examScores",{});
+let timer = { exam:null, left:0, running:false, last:0 };
+const app = document.getElementById("app");
+const S = id => SUBJECTS.find(s=>s.id===id);
+const ready = s => s.fiches.length>0;
+const esc = t => String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function today(){ const d=new Date(); d.setHours(0,0,0,0); return d.getTime(); }
+function D(a){ return new Date(a[0],a[1]-1,a[2]).getTime(); }
+function fmtDate(a){ return new Date(a[0],a[1]-1,a[2]).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}); }
+function totalFiches(){ return SUBJECTS.reduce((n,s)=>n+s.fiches.length,0); }
+function readCount(){ return Object.values(read).filter(Boolean).length; }
+function allQuestions(){ return SUBJECTS.flatMap(s=>s.quiz.map((q,i)=>Object.assign({},q,{id:s.id+"-"+i,subj:s.id}))); }
+function dueList(){ const t=today(); return allQuestions().filter(q=>srs[q.id] && srs[q.id].due<=t); }
+function pending(){ return Object.keys(srs).length; }
+function daysLeft(){ return Math.max(0,Math.ceil((EXAM_DAY.getTime()-today())/DAY)); }
+function currentPhase(){ const t=today(); return PLAN.findIndex(p=>t>=D(p.start)&&t<=D(p.end)); }
+function todaySession(){ const i=currentPhase(); if(i<0) return null; const p=PLAN[i]; return {phase:p, text:DAYS[p.mode][new Date().getDay()]}; }
+
+function record(id, ok, reviewing){
+  const cur = srs[id];
+  if(!ok){ srs[id] = {box:0, due:today()+DAY}; }
+  else if(cur && reviewing){ const b=cur.box+1; if(b>=INTERVALS.length) delete srs[id]; else srs[id]={box:b, due:today()+INTERVALS[b]*DAY}; }
+  store.set("srs",srs);
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function startQuiz(mode){
+  state.qmode = mode; state.quizIdx=0; state.quizScore=0;
+  state.qlist = mode==="review" ? shuffle(dueList()) : S(state.subj).quiz.map((q,i)=>Object.assign({},q,{id:state.subj+"-"+i,subj:state.subj}));
+}
+
+function selector(kind){
+  const opts = SUBJECTS.filter(s=> kind==="fiches"?s.fiches.length:kind==="quiz"?s.quiz.length:s.cas.length);
+  if(!opts.find(s=>s.id===state.subj)) state.subj = opts[0].id;
+  return `<label class="eyebrow" for="sel-${kind}">Matière</label>
+  <select id="sel-${kind}">${opts.map(s=>`<option value="${s.id}" ${s.id===state.subj?"selected":""}>${s.code} · ${s.short}</option>`).join("")}</select>`;
+}
+function seg(name, items, cur){
+  return `<div class="seg" role="tablist">${items.map(([v,l])=>`<button role="tab" aria-selected="${v===cur}" class="${v===cur?"on":""}" data-seg="${name}" data-val="${v}">${l}</button>`).join("")}</div>`;
+}
+
+/* ===================== VUES ===================== */
+function home(){
+  const groups = [...new Set(SUBJECTS.map(s=>s.group))];
+  const due = dueList().length, ts = todaySession();
+  return `<div class="top"><div><p class="eyebrow">Brevet de technicien supérieur</p><h1>Comptabilité et Gestion</h1></div>
+  <div class="count"><b>J−${daysLeft()}</b>avant les écrits</div></div>
+  <div class="today stack">
+    <div><p class="eyebrow">Aujourd'hui</p><h2>${ts?ts.text:"Révision libre"}</h2>${ts?`<p class="s">${ts.phase.titre}${ts.phase.minutes?` · environ ${ts.phase.minutes} minutes`:""}</p>`:""}</div>
+    <div class="row"><button class="btn" data-review>${due?`À revoir : ${due} question${due>1?"s":""}`:"À revoir : rien aujourd'hui"}</button><button class="btn ghost" data-go="plan">Voir le planning</button></div>
+  </div>
+  <div class="stats"><div><b>${readCount()}/${totalFiches()}</b><span>fiches maîtrisées</span></div><div><b>${pending()}</b><span>questions en cours de révision</span></div><div><b>${EXAMS.length}</b><span>sujets d'examen</span></div></div>
+  <div class="hint"><b>Méthode :</b> lis une fiche, ferme-la, puis fais le quiz sans regarder. Chaque question ratée part dans la pile « À revoir » : elle revient le lendemain, puis 3 jours, 7 jours et 14 jours plus tard. Se tester fait mieux retenir que relire.</div>
+  ${groups.map(g=>`<h2 class="group-title">${g}</h2><div class="list">${SUBJECTS.filter(s=>s.group===g).map(s=>`
+    <button class="subj" data-open="${s.id}">
+      <span class="code">${s.code}</span>
+      <span class="t"><span class="n">${s.name}</span><br><span class="s">${s.fiches.length} fiches · ${s.quiz.length} questions${s.cas.length?` · ${s.cas.length} cas`:""}</span></span>
+      <span class="pill">${s.fiches.filter((f,i)=>read[s.id+"-"+i]).length}/${s.fiches.length}</span>
+    </button>`).join("")}</div>`).join("")}`;
+}
+
+function fiches(){
+  const s = S(state.subj);
+  return `<div class="stack"><div><p class="eyebrow">Fiches de cours</p><h1>${s.name}</h1></div>${selector("fiches")}
+  ${s.fiches.map((f,i)=>{ const k=s.id+"-"+i; return `<details class="fiche" id="f-${k}">
+    <summary><span class="t"><h3>${f.titre}</h3><span class="freq">${f.freq}</span> ${read[k]?'<span class="done">✓ maîtrisée</span>':""}</span>
+    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></summary>
+    <div class="fbody">${f.html}<button class="mark ${read[k]?"on":""}" data-read="${k}">${read[k]?"✓ Fiche maîtrisée":"Marquer comme maîtrisée"}</button></div></details>`; }).join("")}</div>`;
+}
+
+function quiz(){
+  const head = `<div><p class="eyebrow">Quiz corrigé</p><h1>${state.qmode==="review"?"Pile « À revoir »":S(state.subj).short}</h1></div>
+  ${seg("qmode",[["subject","Par matière"],["review",`À revoir (${dueList().length})`]],state.qmode)}`;
+  if(state.qmode==="subject" && !state.qlist.length) startQuiz("subject");
+  const Q = state.qlist;
+  if(state.qmode==="review" && !Q.length){
+    return `<div class="stack">${head}<div class="panel stack"><h2>Rien à revoir aujourd'hui</h2><p>${pending()?`${pending()} question${pending()>1?"s":""} reviendront dans les prochains jours.`:"Fais un quiz par matière : chaque question ratée viendra s'ajouter ici."}</p><button class="btn" data-seg="qmode" data-val="subject">Faire un quiz par matière</button></div></div>`;
+  }
+  if(state.quizIdx>=Q.length){
+    const pct = Math.round(state.quizScore/Q.length*100);
+    return `<div class="stack">${head}<div class="panel stack"><span class="big">${state.quizScore}/${Q.length}</span>
+    <p>${pct>=80?"Très bien. Les questions ratées reviendront demain dans la pile « À revoir ».":pct>=50?"En bonne voie. Relis les fiches des questions ratées : elles reviendront demain dans la pile « À revoir ».":"Normal au début. Relis les fiches une par une ; les questions ratées reviendront demain."}</p>
+    ${state.qmode==="subject"?`<p class="eyebrow">Meilleur score : ${best[state.subj]??state.quizScore}/${Q.length}</p>`:""}</div>
+    <div class="row"><button class="btn" data-restart>Recommencer</button><button class="btn ghost" data-go="fiches">Relire les fiches</button></div></div>`;
+  }
+  const q = Q[state.quizIdx];
+  return `<div class="stack">${head}${state.qmode==="subject"?selector("quiz"):`<p class="s">Matière : ${S(q.subj).code} · ${S(q.subj).short}</p>`}
+  <div class="bar"><i style="width:${state.quizIdx/Q.length*100}%"></i></div>
+  <p class="eyebrow">Question ${state.quizIdx+1} sur ${Q.length} · score ${state.quizScore}</p>
+  <div class="panel stack"><p class="q">${q.q}</p><div class="opts">${q.o.map((o,i)=>`<button class="opt" data-ans="${i}">${o}</button>`).join("")}</div>
+  <div id="fb" hidden></div></div></div>`;
+}
+
+function casView(){
+  const s = S(state.subj);
+  return `${selector("cas")}
+  <div class="hint"><b>Comment faire :</b> réponds sur une feuille à chaque question, puis seulement ensuite affiche la correction.</div>
+  ${s.cas.map(c=>`<div class="panel stack"><h2>${c.titre}</h2>${c.enonce}
+    ${c.qs.map(q=>`<div><p><b>${q.q}</b></p><button class="btn ghost reveal" data-rev>Voir la correction</button><div class="ans" hidden>${q.r}</div></div>`).join("")}</div>`).join("")}`;
+}
+function fmtTime(sec){ const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60; return (h?h+" h ":"")+String(m).padStart(2,"0")+" min "+String(s).padStart(2,"0"); }
+function examView(){
+  if(!state.exam){
+    return `<div class="hint"><b>Conditions réelles :</b> lance le minuteur, travaille sur une feuille sans regarder tes fiches, puis corrige-toi avec le barème.</div>
+    ${EXAMS.map(e=>{ const sc=examScores[e.id]; const tot=e.qs.reduce((n,q)=>n+q.pts,0); return `<button class="subj" data-exam="${e.id}"><span class="code">${e.duree>=60?Math.floor(e.duree/60)+" h"+(e.duree%60?" "+e.duree%60:""):e.duree+" min"}</span><span class="t"><span class="n">${e.titre}</span><br><span class="s">${e.epreuve}</span></span><span class="pill">${sc&&sc.done?sc.total+"/"+tot:"À faire"}</span></button>`; }).join("")}`;
+  }
+  const e = EXAMS.find(x=>x.id===state.exam); const sc = examScores[e.id]||{pts:{}};
+  const tot = e.qs.reduce((n,q)=>n+q.pts,0);
+  if(timer.exam!==e.id){ timer={exam:e.id,left:e.duree*60,running:false,last:0}; }
+  const total = e.qs.reduce((n,q,i)=>n+(+sc.pts[i]||0),0);
+  return `<button class="back" data-exam="">← Tous les sujets</button>
+  <div><p class="eyebrow">${e.epreuve}</p><h2>${e.titre}</h2></div>
+  <div class="timer panel"><span id="clock" class="clock">${fmtTime(timer.left)}</span>
+    <div class="row"><button class="btn" data-timer="toggle">${timer.running?"Pause":"Lancer le minuteur"}</button><button class="btn ghost" data-timer="reset">Remettre à zéro</button></div></div>
+  ${e.intro}
+  <div class="panel stack sujet">${e.annexes}</div>
+  <h2>Travail à faire</h2>
+  ${e.qs.map((q,i)=>`<div class="panel stack"><p><b>${q.q}</b> <span class="pill">${q.pts} point${q.pts>1?"s":""}</span></p>
+    <button class="btn ghost reveal" data-rev>Voir la correction</button><div class="ans" hidden>${q.r}</div>
+    <label class="score">Mes points : <input type="number" inputmode="decimal" min="0" max="${q.pts}" step="0.5" id="sc-${e.id}-${i}" data-score="${i}" value="${sc.pts[i]??""}"> / ${q.pts}</label></div>`).join("")}
+  <div class="panel stack"><p class="eyebrow">Ma note</p><span class="big" id="examTotal">${total}/${tot}</span><button class="btn" data-savescore>Enregistrer ma note</button></div>`;
+}
+function train(){
+  return `<div class="stack"><div><p class="eyebrow">Entraînement</p><h1>${state.train==="cas"?"Cas pratiques corrigés":"Sujets d'examen chronométrés"}</h1></div>
+  ${seg("train",[["cas","Cas pratiques"],["exam","Sujets d'examen"]],state.train)}
+  ${state.train==="cas"?casView():examView()}</div>`;
+}
+
+function plan(){
+  const ci = currentPhase(), t = today();
+  return `<div class="stack"><div><p class="eyebrow">Planning jusqu'à l'examen</p><h1>J−${daysLeft()}</h1>
+  <p class="s">Premières épreuves écrites le mardi 11 mai 2027. Le planning tient compte de ton stage en cabinet de janvier à mi-mars.</p></div>
+  ${PLAN.map((p,i)=>{ const st = i===ci?"now":(D(p.end)<t?"past":"next"); return `<div class="phase ${st}">
+    <div class="ph-head"><span class="ph-date">${fmtDate(p.start)} → ${fmtDate(p.end)}</span>${st==="now"?'<span class="pill">En cours</span>':st==="past"?'<span class="pill later">Terminé</span>':""}</div>
+    <h3>${p.titre}</h3>${p.minutes?`<p class="s">Environ ${p.minutes} minutes par jour</p>`:""}
+    <ul>${p.focus.map(f=>`<li>${f}</li>`).join("")}</ul>
+    ${st==="now"?`<details class="week"><summary>Ma semaine type</summary><ul>${["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"].map((d,j)=>`<li><b>${d}</b> : ${DAYS[p.mode][(j+1)%7]}</li>`).join("")}</ul></details>`:""}
+  </div>`; }).join("")}
+  <div class="trap"><span class="lab">À vérifier</span>Les dates de l'étude de cas, des mathématiques et des oraux figurent sur ta convocation. Demande aussi à SFA Formation quelles épreuves se passent en contrôle en cours de formation.</div></div>`;
+}
+
+function render(){
+  const v = {home, fiches, quiz, train, plan}[state.tab];
+  app.innerHTML = v();
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===state.tab));
+}
+function go(tab){ state.tab=tab; if(tab==="quiz" && state.qmode==="subject") startQuiz("subject"); render(); window.scrollTo(0,0); }
+
+/* ===================== MINUTEUR ===================== */
+setInterval(()=>{
+  if(!timer.running) return;
+  const now=Date.now(); const d=Math.floor((now-timer.last)/1000);
+  if(d>=1){ timer.left=Math.max(0,timer.left-d); timer.last+=d*1000; if(!timer.left) timer.running=false;
+    const c=document.getElementById("clock"); if(c){ c.textContent = timer.left?fmtTime(timer.left):"Temps écoulé"; if(!timer.running){ const b=document.querySelector('[data-timer="toggle"]'); if(b) b.textContent="Lancer le minuteur"; } } }
+}, 250);
+
+/* ===================== INTERACTIONS ===================== */
+document.querySelector("nav.tabs").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) go(b.dataset.tab); });
+app.addEventListener("change",e=>{
+  if(e.target.tagName==="SELECT"){ state.subj=e.target.value; store.set("subj",state.subj); if(state.tab==="quiz") startQuiz("subject"); render(); }
+});
+app.addEventListener("input",e=>{
+  if(e.target.dataset.score!==undefined){
+    const ex=EXAMS.find(x=>x.id===state.exam); const sc=examScores[ex.id]||(examScores[ex.id]={pts:{}});
+    const i=+e.target.dataset.score; const v=Math.min(ex.qs[i].pts,Math.max(0,parseFloat(e.target.value.replace(",","."))||0));
+    sc.pts[i]= e.target.value===""?"":v; sc.total = ex.qs.reduce((n,q,j)=>n+(+sc.pts[j]||0),0);
+    store.set("examScores",examScores);
+    const t=document.getElementById("examTotal"); if(t) t.textContent = sc.total+"/"+ex.qs.reduce((n,q)=>n+q.pts,0);
+  }
+});
+app.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.open){ state.subj=t.dataset.open; store.set("subj",state.subj); go("fiches"); return; }
+  if(t.dataset.review!==undefined){ state.tab="quiz"; startQuiz("review"); render(); window.scrollTo(0,0); return; }
+  if(t.dataset.seg==="qmode"){ startQuiz(t.dataset.val); render(); return; }
+  if(t.dataset.seg==="train"){ state.train=t.dataset.val; render(); return; }
+  if(t.dataset.read){ const k=t.dataset.read; read[k]=!read[k]; store.set("read",read); render(); const nd=document.getElementById("f-"+k); if(nd) nd.open=true; return; }
+  if(t.dataset.ans!==undefined){
+    const q=state.qlist[state.quizIdx], i=+t.dataset.ans;
+    document.querySelectorAll(".opt").forEach((b,j)=>{ b.disabled=true; if(j===q.a) b.classList.add("good"); else if(j===i) b.classList.add("wrong"); });
+    const ok=i===q.a; if(ok) state.quizScore++;
+    record(q.id, ok, state.qmode==="review");
+    const fb=document.getElementById("fb"); fb.hidden=false;
+    fb.innerHTML=`<div class="feedback"><b style="color:var(${ok?"--ok":"--bad"})">${ok?"Bonne réponse.":"Pas tout à fait."}</b> ${q.e}${ok?"":" <i>Cette question revient demain dans la pile « À revoir ».</i>"}</div><button class="btn" data-next style="margin-top:10px">${state.quizIdx+1<state.qlist.length?"Question suivante":"Voir mon score"}</button>`;
+    return;
+  }
+  if(t.dataset.next!==undefined){ state.quizIdx++; if(state.quizIdx>=state.qlist.length && state.qmode==="subject"){ best[state.subj]=Math.max(best[state.subj]||0,state.quizScore); store.set("best",best);} render(); window.scrollTo(0,0); return; }
+  if(t.dataset.restart!==undefined){ startQuiz(state.qmode); render(); return; }
+  if(t.dataset.go){ go(t.dataset.go); return; }
+  if(t.dataset.exam!==undefined){ state.exam=t.dataset.exam||null; render(); window.scrollTo(0,0); return; }
+  if(t.dataset.timer==="toggle"){ if(!timer.left) return; timer.running=!timer.running; timer.last=Date.now(); t.textContent=timer.running?"Pause":"Reprendre"; return; }
+  if(t.dataset.timer==="reset"){ const ex=EXAMS.find(x=>x.id===state.exam); timer={exam:ex.id,left:ex.duree*60,running:false,last:0}; render(); return; }
+  if(t.dataset.savescore!==undefined){ const sc=examScores[state.exam]||(examScores[state.exam]={pts:{}}); sc.total=EXAMS.find(x=>x.id===state.exam).qs.reduce((n,q,j)=>n+(+sc.pts[j]||0),0); sc.done=true; store.set("examScores",examScores); t.textContent="✓ Note enregistrée"; return; }
+  if(t.dataset.rev!==undefined){ const a=t.nextElementSibling; a.hidden=!a.hidden; t.textContent=a.hidden?"Voir la correction":"Masquer la correction"; }
+});
+render();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});}
+</script>
+
+</body>
+</html>
